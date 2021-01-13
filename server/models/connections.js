@@ -5,6 +5,7 @@ function makeNewConnection(uri, dbName) {
     const db = mongoose.createConnection(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useFindAndModify: false
     });
 
     db.once('open', () => { console.log(`Successful connection to ${dbName}!`) });

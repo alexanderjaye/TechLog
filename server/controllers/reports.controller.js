@@ -1,31 +1,58 @@
 const reports = require('../models/reports.models/reports.models');
 
 const allReports = async (req, res) => {
-  res.send('All reports')
+  try {
+    const reply = await reports.allReports();
+    res.status(200).send(reply);
+  } catch (err) {
+    console.log('Return all reports error', err);
+    res.status(500).send('Return all reports error');
+  }
 }
 
 const getReport = async (req, res) => {
-  res.send('Get report')
+  try {
+    const { id } = req.params;
+    const reply = await reports.getReport(id);
+    res.status(200).send(reply);
+  } catch (err) {
+    console.log('Return single report error', err);
+    res.status(500).send('Return single report error');
+  }
 }
 
 const newReport = async (req, res) => {
   try {
     const { title, description, tags, steps, comments } = req.body;
-    console.log(title, description, tags, steps, comments)
     const reply = await reports.newReport(title, description, tags, steps, comments);
+    console.log(reply);
     res.status(201).send(reply);
   } catch (err) {
     console.log('Create new report error', err);
-    res.status(500).send(err);
+    res.status(500).send('Create new report error');
   }
 }
 
 const editReport = async (req, res) => {
-  res.send('Edit report')
+  try {
+    const { _id, title, description, tags, steps, comments } = req.body;
+    const reply = await reports.editReport(_id, title, description, tags, steps, comments);
+    res.status(200).send(reply);     //Was using 204 but no res body :(
+  } catch (err) {
+    console.log('Edit report error', err);
+    res.status(500).send('Edit report error');
+  }
 }
 
 const deleteReport = async (req, res) => {
-  res.send('Delete report')
+  try {
+    const { id } = req.params;
+    const reply = await reports.deleteReport(id);
+    res.status(200).send(reply);
+  } catch (err) {
+    console.log('Delete report error', err);
+    res.status(500).send('Delete report error');
+  }
 }
 
 module.exports = {
