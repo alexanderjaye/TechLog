@@ -25,7 +25,6 @@ const newReport = async (req, res) => {
   try {
     const { title, description, tags, steps, comments } = req.body;
     const reply = await reports.newReport(title, description, tags, steps, comments);
-    console.log(reply);
     res.status(201).send(reply);
   } catch (err) {
     console.log('Create new report error', err);

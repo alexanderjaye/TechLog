@@ -5,7 +5,7 @@ require('dotenv').config();
 //Config
 const app = express();
 const PORT = process.env.PORT || 3002;
-const HOST = process.env.HOST || `A different host`;
+const HOST = process.env.HOST || `a secret host`;
 
 //Middleware
 app.use(

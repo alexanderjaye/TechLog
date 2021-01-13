@@ -1,4 +1,3 @@
-const { findByIdAndDelete } = require('./reports.schema');
 const Reports = require('./reports.schema');
 
 const allReports = () => {
