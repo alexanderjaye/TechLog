@@ -1,0 +1,30 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid black;
+}
+
+.navbar__banner {
+  display: flex;
+}
+
+.navbar__banner i {
+  padding-right: 0.2em;
+}
+
+.navbar__title {
+  font-size: 270%;
+  color: var(--color-secondary);
+}
+
+.navbar__links {
+  display: flex;
+  align-items: flex-end;
+  padding-right: 2em;
+}
+
+.navbar__links a {
+  padding-left: 2em;
+  padding-right: 2em;
+}
