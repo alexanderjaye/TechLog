@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './SearchItem.css';
 
 import SearchItemTag from './SearchItemTag';
 
+import Backdrop from '../../Modal/Backdrop';
 
-const SearchItem = ( {title, tags, searchTags} ) => {
+
+const SearchItem = ( {admin, id, title, tags, searchTags, callReports} ) => {
+
+  const [viewModal, setViewModal ] = useState(false);
 
   const checkTags = () => {
     let flag = true;
@@ -15,8 +19,22 @@ const SearchItem = ( {title, tags, searchTags} ) => {
     return flag;
   }
 
+  const toggleModal = () => {
+    setViewModal(!viewModal);
+  }
+
   if (!checkTags()) {
     return null;
+  }
+
+  if (viewModal) {
+    return <Backdrop
+      admin={admin}
+      id={id} 
+      title={title}
+      toggleModal={toggleModal}  
+      callReports={callReports}
+      />
   }
 
   return (
@@ -25,6 +43,7 @@ const SearchItem = ( {title, tags, searchTags} ) => {
       <ul>
         {tags.map((tag, index) => <SearchItemTag key={index} tag={tag}/>)}
       </ul>
+      <button onClick={() => toggleModal()}>More details</button>
     </div>
   )
 }

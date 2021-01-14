@@ -8,10 +8,10 @@ import SearchItem from './SearchItem';
 
 import rest from '../../Utils/rest';
 
-const SearchList = () => {
+const SearchList = ({ admin }) => {
 
   const [reports, setReports] = useState([]);
-  const [searchTags, setSearchTags] = useState(['#motor', '#pxi', '#pump']);
+  const [searchTags, setSearchTags] = useState([]);
 
   //Initial render
   useEffect(() => {
@@ -41,7 +41,6 @@ const SearchList = () => {
 
   //Use useEffect to filter on searchTerm state change
 
-
   return (
     <div className="searchlist__container">
       <SearchBar 
@@ -62,9 +61,12 @@ const SearchList = () => {
         {reports.length !== 0 ?
         reports.map((report, index) => <SearchItem
           key={index}
+          admin={admin}
+          id={report._id}
           title={report.title}
           tags={report.tags}
           searchTags={searchTags}
+          callReports={callReports}
         />)
         : null}
       </ul>

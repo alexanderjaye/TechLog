@@ -9,9 +9,17 @@ const getReports = async () => {
     .then(data => {dbCall = data})
     .catch(err => console.log('Fetch error', err));
 
+    //console.log(dbCall);
     return dbCall;
 }
 
+const deleteReport = async (id) => {
+  await fetch(BASE_URL + `deletereport/${id}`, {
+    method: 'DELETE'
+  }).catch(err => console.log('Fetch error', err))
+}
+
 module.exports = {
-  getReports
+  getReports,
+  deleteReport
 }

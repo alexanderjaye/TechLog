@@ -22,6 +22,7 @@ const SearchBar = ({ searchTagHandler }) => {
 
   return (
     <div className="searchbar__container">
+      <h2>Add a search term...</h2>
       <input 
         className="searchbar__input" 
         type="text" 
