@@ -2,9 +2,30 @@ import React from 'react';
 
 import './SearchItem.css';
 
-const SearchItem = () => {
+import SearchItemTag from './SearchItemTag';
+
+
+const SearchItem = ( {title, tags, searchTags} ) => {
+
+  const checkTags = () => {
+    let flag = true;
+    searchTags.forEach(searchTag => {
+      if (!tags.includes(searchTag)) flag = false;
+    })
+    return flag;
+  }
+
+  if (!checkTags()) {
+    return null;
+  }
+
   return (
-    <h1>SearchItem</h1>
+    <div className="searchitem__container">
+      <h3>{title}</h3>
+      <ul>
+        {tags.map((tag, index) => <SearchItemTag key={index} tag={tag}/>)}
+      </ul>
+    </div>
   )
 }
 

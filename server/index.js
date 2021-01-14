@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const router = require('./router');
 require('dotenv').config();
 
@@ -10,6 +11,7 @@ const HOST = process.env.HOST || `a secret host`;
 //Middleware
 app.use(
   express.json(),
+  cors(),
   router
 );
 

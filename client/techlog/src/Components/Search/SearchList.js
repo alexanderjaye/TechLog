@@ -1,16 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './SearchList.css';
 
 import SearchBar from './SearchBar';
+import SearchTags from './SearchTags';
 import SearchItem from './SearchItem';
 
+import rest from '../../Utils/rest';
+
 const SearchList = () => {
+
+  const [reports, setReports] = useState([]);
+  const [searchTags, setSearchTags] = useState(['#motor', '#pxi', '#pump']);
+
+  //Initial render
+  useEffect(() => {
+    callReports();  
+  }, []);
+
+  //Call for reports
+  const callReports = async () => {
+    const dbCall = await rest.getReports();
+    setReports(dbCall);
+  }
+
+  //Add search tag
+  const searchTagHandler = (value) => {
+    const prevTags = [...searchTags];  //Copy as an array so a ref value
+    if (value.charAt(0) !== '#') value = `#${value}`;
+    if (!prevTags.includes(value)) prevTags.push(value);
+    setSearchTags(prevTags);
+  }
+
+  //Delete search tag
+  const deleteTagHandler = (eventTarget) => {
+    const prevTags = [...searchTags];
+    const filterTags = prevTags.filter(element => element !== eventTarget);
+    setSearchTags(filterTags);
+  }
+
+  //Use useEffect to filter on searchTerm state change
+
+
   return (
-    <div>
-      <h1>SearchList</h1>
-      <SearchBar/>
-      <SearchItem/>
+    <div className="searchlist__container">
+      <SearchBar 
+        classname="searchlist__searchbar"
+        searchTagHandler={searchTagHandler}
+      />
+      <ul 
+        className="searchlist__searchtags">
+        {searchTags.length !== 0 &&
+        searchTags.map((tag, index) => <SearchTags 
+          key={index}
+          tag={tag}
+          deleteTagHandler={() => deleteTagHandler(tag)}  
+        />)}
+      </ul>
+      <ul
+        className="searchlist__searchitems">
+        {reports.length !== 0 ?
+        reports.map((report, index) => <SearchItem
+          key={index}
+          title={report.title}
+          tags={report.tags}
+          searchTags={searchTags}
+        />)
+        : null}
+      </ul>
     </div>
   )
 }
