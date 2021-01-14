@@ -12,9 +12,9 @@ const NewReport = () => {
   //Form submit handler
   const formHandler = (event) => {
     event.preventDefault();
-    const title = document.getElementById('newreport__title__input').value;
+    const title = document.getElementById('report__title__input').value;
     const searchTags = tagsHandler();
-    const description = document.getElementById('newreport__description__input').value;
+    const description = document.getElementById('report__description__input').value;
     const steps = stepsState;
     if (title === '' || searchTags.length === 0 || description === '') {
       console.log('Missing fields!');
@@ -28,12 +28,12 @@ const NewReport = () => {
 
   //Form field reset
   const formReset = () => {
-    document.getElementById('newreport__title__input').value = ''; 
+    document.getElementById('report__title__input').value = ''; 
     const checkBoxs = document.querySelectorAll('.search-tag__checkbox');
     checkBoxs.forEach(checkbox => checkbox.checked = false);
     document.getElementById('custom__tag__hook').innerHTML = '';
-    document.getElementById('newreport__description__input').value = '';
-    document.getElementById('newreport__steps__hook').innerHTML = '';
+    document.getElementById('report__description__input').value = '';
+    document.getElementById('report__steps__hook').innerHTML = '';
   }
 
   //On form submit, merges checkbox tags and custom tags
@@ -84,34 +84,34 @@ const NewReport = () => {
   }
 
   return (
-    <div className="newreport__container">
+    <div className="report__container">
       <h1>NewReport</h1>
       <form onSubmit={formHandler} spellCheck="false">
-        <div className="newreport__title">
+        <div className="report__title">
             <label>Title</label>
-            <input id="newreport__title__input"name="title" type="text"></input>
+            <input id="report__title__input"name="title" type="text"></input>
         </div>
-        <div className="newreport__search-tags">
+        <div className="report__search-tags">
             <label>Search Tags</label>
-            <div className="newreport__search-tags__fixed">
+            <div className="report__search-tags__fixed">
               <label>Kyst</label>
               <input type="checkbox" id="kyst__tag" className="search-tag__checkbox" value="kyst"/>
               <label>HD</label>
               <input type="checkbox" id="hd__tag" className="search-tag__checkbox" value="hd"/>
             </div>
-            <div className="newreport__search-tags__custom">
+            <div className="report__search-tags__custom">
               <label>Custom Tag</label>
               <input id="custom__tag__input" name="custom__tag" type="text"></input>
               <button onClick={customTagHandler}>ADD CUSTOM TAG</button>
             </div>
             <ul id="custom__tag__hook"></ul>
         </div>
-        <div className="newreport__description">
+        <div className="report__description">
           <label>Description</label>
-          <textarea id="newreport__description__input" rows="10" cols="30"></textarea>
+          <textarea id="report__description__input" rows="10" cols="30"></textarea>
         </div>
-        <div className="newreport__steps">
-            <ul id="newreport__steps__hook"></ul>
+        <div className="report__steps">
+            <ul id="report__steps__hook"></ul>
             <input id="add__step" type="text"></input>
             <button onClick={addStepHandler}>ADD STEP</button>
         </div>

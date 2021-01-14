@@ -6,7 +6,8 @@ import './Authorised.css';
 
 import Navbar from '../Nav/Navbar';
 import SearchList from '../Search/SearchList';
-import NewReport from '../Reports/NewReport';
+import NewReport from '../NewReport/NewReport';
+import EditReport from '../EditReport/EditReport'
 import Login from '../Login/Login';
 
 const Authorised = ({logout}) => {
@@ -32,6 +33,7 @@ const Authorised = ({logout}) => {
         <Switch>
           <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin}/>)}/>  
           <Route exact path = '/new' component={NewReport}/>
+          <Route exact path = '/edit' component={EditReport}></Route>
           <Route exact path = '/logout' component={Login}/>
         </Switch>
       </div>
