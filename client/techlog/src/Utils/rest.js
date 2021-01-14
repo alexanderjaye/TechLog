@@ -13,6 +13,19 @@ const getReports = async () => {
     return dbCall;
 }
 
+const getReport = async (id) => {
+
+  let dbCall;
+
+  await fetch(BASE_URL + `getreport/${id}`)
+    .then(response => response.json())
+    .then(data => {dbCall = data})
+    .catch(err => console.log('Fetch error', err));
+
+    //console.log(dbCall);
+    return dbCall;
+}
+
 const postReport = async (title, searchTags, description, steps) => {
   await fetch(BASE_URL + 'postreport', {
     method: 'POST',
@@ -28,6 +41,10 @@ const postReport = async (title, searchTags, description, steps) => {
   }).catch(err => console.log('Fetch error', err)); 
 }
 
+const editReport = (id, title, searchTags, description, steps) => {
+  console.log(id, title, searchTags, description, steps);
+}
+
 const deleteReport = async (id) => {
   await fetch(BASE_URL + `deletereport/${id}`, {
     method: 'DELETE'
@@ -36,6 +53,8 @@ const deleteReport = async (id) => {
 
 module.exports = {
   getReports,
+  getReport,
   postReport,
+  editReport,
   deleteReport
 }
