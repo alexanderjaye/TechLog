@@ -1,21 +1,25 @@
 nav {
   display: flex;
+  height: 15vh;
   justify-content: space-between;
-  padding: 1em;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color-text-primary);
+  background-color: var(--color-secondary);
 }
 
 .navbar__banner {
   display: flex;
+  margin-top: 1.3em;
+  margin-left: 1.3em;
 }
 
 .navbar__banner i {
   padding-right: 0.2em;
+  color: var(--color-primary);
 }
 
 .navbar__title {
   font-size: 270%;
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .navbar__links {
@@ -25,6 +29,37 @@ nav {
 }
 
 .navbar__links a {
+  height: 50%;
+  width: 8em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   padding-left: 2em;
   padding-right: 2em;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.navbar__links a:hover {
+  color: white;
+  opacity: 80%;
+  background-color: var(--color-accent);
+}
+
+.mode__div {
+  position: relative;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
+}
+
+.mode__div i {
+  font-size: 250%;
+  color: var(--color-primary);
+  position: absolute;
+}
+
+.mode__div button {
+  width: 30px;
+  opacity: 0;
 }

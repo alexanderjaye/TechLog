@@ -46,6 +46,9 @@ const SearchItem = ( {admin, id, title, tags, searchTags, description, steps, ca
       <ul>
         {tags.map((tag, index) => <SearchItemTag key={index} tag={tag}/>)}
       </ul>
+      <div className="searchitem__container__description">
+        <p>{`${description.substring(0,100)}...`}</p>
+      </div>
       <button onClick={() => toggleModal()}>More details</button>
     </div>
   )

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 
-const Navbar = ({admin, logout, toggleMode}) => {
+const Navbar = ({admin, logout, mode, toggleMode}) => {
   return (
     <nav>
       <div className="navbar__banner">
@@ -16,7 +16,10 @@ const Navbar = ({admin, logout, toggleMode}) => {
         <Link to='/new'>New</Link>
         {admin ? <Link to='/edit'>Edit</Link> : null}
         <Link to="/logout" onClick={logout}>Logout</Link>
-        <button className="navbar__mode-switch" onClick={toggleMode}>Mode</button>
+        <div className="mode__div">
+          {mode === 'light' ? <i className="fas fa-sun"></i> : <i className="fas fa-moon"></i>}
+          <button className="navbar__mode-switch" onClick={toggleMode}>X</button>
+        </div>
       </div>
     </nav>
   )

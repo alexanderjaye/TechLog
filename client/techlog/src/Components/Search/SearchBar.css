@@ -10,10 +10,14 @@
 }
 
 .searchbar__input {
-  width: 20%;
+  width: 30%;
+  padding: 0.6em;
   margin-right: 0.6em;
 }
 
+.searchbar__input[type="text"] {
+  font-size: 1.2em;
+}
+
 .searchbar__submit-btn {
-  padding: 0.2em;
 }

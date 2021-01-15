@@ -9,6 +9,7 @@ import SearchList from '../Search/SearchList';
 import NewReport from '../NewReport/NewReport';
 import EditReport from '../EditReport/EditReport'
 import Login from '../Login/Login';
+import Footer from '../Footer/Footer';
 
 const Authorised = ({logout}) => {
 
@@ -18,15 +19,23 @@ const Authorised = ({logout}) => {
 
   //Mode change
   const toggleMode = () => {
+    trans();
     setMode(mode === 'light' ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', mode);
   }
+
+  const trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('transition')}, 1000);
+  };
 
   return (
     <Router>
       <div className="main-app">
         <Navbar 
           logout={logout}
+          mode={mode}
           toggleMode={toggleMode}
           admin={admin}
           />
@@ -36,6 +45,7 @@ const Authorised = ({logout}) => {
           <Route exact path = '/edit' component={EditReport}></Route>
           <Route exact path = '/logout' component={Login}/>
         </Switch>
+        <Footer/>
       </div>
     </Router>
 
