@@ -5,7 +5,7 @@ import './SearchItemTag.css';
 const SearchItemTag = ({tag}) => {
 
   return (
-    <li>{tag}</li>
+    <li className="searchitem__tag__li">{tag}</li>
   )
 }
 

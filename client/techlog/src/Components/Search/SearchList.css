@@ -1,0 +1,17 @@
+.searchlist__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.searchlist__searchtags {
+  width: 100%;
+}
+
+.searchlist__searchitems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

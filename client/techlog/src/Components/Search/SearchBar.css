@@ -1,0 +1,19 @@
+.searchbar__container {
+  display: flex;
+  justify-content: center;
+  margin: 2em;
+  width: 80%;
+}
+
+.searchbar__container h2 {
+  margin-right: 0.6em;
+}
+
+.searchbar__input {
+  width: 20%;
+  margin-right: 0.6em;
+}
+
+.searchbar__submit-btn {
+  padding: 0.2em;
+}

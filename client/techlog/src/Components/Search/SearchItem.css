@@ -1,3 +1,31 @@
 .searchitem__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 350px;
+  height: 100px;
+  margin: 0.2em;
+  padding: 0.2em;
   border: 1px solid black;
+  background-color: var(--color-accent);
+}
+
+.searchitem__container h3 {
+  margin-bottom: 8px;
+}
+
+.searchitem__container ul {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.searchitem__container li {
+  padding: 5px;
+}
+
+.searchitem__container button {
+  position: absolute;
+  bottom: 3px;
+  padding: 3px;
 }

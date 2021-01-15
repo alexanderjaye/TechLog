@@ -65,6 +65,8 @@ const SearchList = ({ admin }) => {
           id={report._id}
           title={report.title}
           tags={report.tags}
+          description={report.description}
+          steps={report.steps}
           searchTags={searchTags}
           callReports={callReports}
         />)

@@ -24,7 +24,7 @@ html {
   --color-secondary: #d2282f;
   --color-text-primary: #2c2c24;
   --color-text-secondary: #9fa9ac;
-  --color-accent: #63b1bc;
+  --color-accent: #75ceda;
 }
 
 html[data-theme="dark"] {

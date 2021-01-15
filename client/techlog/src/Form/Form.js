@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
+import SearchTags from './SearchTags';
+
 import './Form.css';
 
 //Note formSubmit comes from NewReport.js, and formPatch from EditReport.js
@@ -14,6 +16,7 @@ const Form = ( { formSubmit, formPatch, form } ) => {
 
     //Form submit handler
     const formHandler = (event) => {
+
       event.preventDefault();
       const title = document.getElementById('report__title__input').value;
       const searchTags = tagsHandler();
@@ -27,13 +30,8 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       }
 
       //Check what route currently on - if new, formSubmit, and if edit, formPatch
-      if (location.pathname === '/new') {
-        console.log('submit');
-        formSubmit(title, searchTags, description, steps);
-      } else if (location.pathname === '/edit') {
-        console.log('patch');
-        formPatch(title, searchTags, description, steps);
-      }
+      if (location.pathname === '/new') formSubmit(title, searchTags, description, steps);
+      else if (location.pathname === '/edit') formPatch(title, searchTags, description, steps);
   
       formReset();
     }
@@ -99,13 +97,6 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       document.getElementById('add__step').value='';
     }
 
-    //Event listener to remove tags
-    useEffect( () => {
-      document.querySelector('.report__search-tags').addEventListener('click', (event) => {
-        if (event.target.tagName === 'LI') event.target.parentNode.removeChild(event.target);
-      })},
-    []);
-
     //Event listener to remove steps
     useEffect( () => {
       document.querySelector('.report__steps').addEventListener('click', (event)=> {
@@ -119,33 +110,17 @@ const Form = ( { formSubmit, formPatch, form } ) => {
 
       <div className="report__title">
           <label>Title</label>
-          <input id="report__title__input"name="title" type="text" defaultValue={form ? form.title : ''}></input>
+          <input id="report__title__input" 
+                 name="title" 
+                 type="text" 
+                 defaultValue={form ? form.title : ''}>
+          </input>
       </div>
 
-      <div className="report__search-tags">
-        <label>Search Tags</label>
-        
-        {
-          //The checkboxes  will only render in 'newReport' - no 'editReport'
-        }
-        {form ? null :
-        <div className="report__search-tags__fixed">
-          <label>Kyst</label>
-          <input type="checkbox" id="kyst__tag" className="search-tag__checkbox" value="kyst"/>
-          <label>HD</label>
-          <input type="checkbox" id="hd__tag" className="search-tag__checkbox" value="hd"/>
-        </div> }
-
-        <div className="report__search-tags__custom">
-          <label>Custom Tag</label>
-          <input id="custom__tag__input" name="custom__tag" type="text"></input>
-          <button onClick={customTagHandler}>ADD CUSTOM TAG</button>
-        </div>
-        <ul id="custom__tag__hook">{form && form.tags.map((tag, index) => 
-          <li key={index}>{tag}</li>)}
-        </ul>
-
-      </div>
+      <SearchTags
+        form={form}
+        customTagHandler={customTagHandler}
+      />
 
       <div className="report__description">
         <label>Description</label>
@@ -153,13 +128,16 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       </div>
 
       <div className="report__steps">
+          <label>Steps</label>
+          <div className="report__steps__input">
+            <input id="add__step" type="text"></input>
+            <button onClick={addStepHandler}>ADD STEP</button>
+          </div>
           <ul id="report__steps__hook">{form && form.steps.map((step, index) => 
           <li key={index}>{step}</li>)}</ul>
-          <input id="add__step" type="text"></input>
-          <button onClick={addStepHandler}>ADD STEP</button>
       </div>
 
-      <input type="submit" value="Submit"/>
+      <input className="report__submit__btn" type="submit" value="Submit"/>
 
     </form>
   )
