@@ -19,19 +19,25 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       const searchTags = tagsHandler();
       const description = document.getElementById('report__description__input').value;
       const steps = stepsState;
+
+      console.log(location.pathname);
+
+      //Form validation
       if (title === '' || searchTags.length === 0 || description === '') {
         console.log('Missing fields!');
         return;
       }
-      else {
-        if (location.pathname === '/new') {
-          console.log('submit')
-          formSubmit(title, searchTags, description, steps);
-        } else if (location.pathname === '/edit');
-        //Check what route currently on - if new, formSubmit, and if edit, formPatch
-          console.log('patch')
-          formPatch(title, searchTags, description, steps);
+
+      //Check what route currently on - if new, formSubmit, and if edit, formPatch
+      if (location.pathname === '/new') {
+        console.log('submit');
+        formSubmit(title, searchTags, description, steps);
+      } else if (location.pathname === '/edit') {
+        console.log('patch');
+        formPatch(title, searchTags, description, steps);
       }
+    
+
       formReset();
     }
   
@@ -91,8 +97,6 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       stepsHook.appendChild(newStep);
       document.getElementById('add__step').value='';
     }
-
-    console.log(form);
 
   return (
     <form className="form__container" onSubmit={formHandler} spellCheck="false">

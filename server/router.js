@@ -11,7 +11,7 @@ router.get('/getreport/:id', reports.getReport);
 
 router.post('/postreport', reports.newReport);
 
-router.patch('/editreport/:id', authMiddleware, reports.editReport);
+router.patch('/editreport', authMiddleware, reports.editReport);
 
 router.delete('/deletereport/:id', authMiddleware, reports.deleteReport);
 

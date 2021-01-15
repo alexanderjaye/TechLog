@@ -16,8 +16,11 @@ const EditReport = () => {
     setFormEdit(report);
   }
 
-  const formPatch = () => {
-    return
+  const formPatch = (title, searchTags, description, steps) => {
+    const { _id } = formEditState[0];
+    const formCopy = { _id, title, tags:searchTags, description, steps}
+    rest.editReport(formCopy);
+    setFormEdit(null);
   } 
 
   return (

@@ -41,8 +41,22 @@ const postReport = async (title, searchTags, description, steps) => {
   }).catch(err => console.log('Fetch error', err)); 
 }
 
-const editReport = (id, title, searchTags, description, steps) => {
-  console.log(id, title, searchTags, description, steps);
+const editReport = async (formCopy) => {
+  const { _id, title, tags, description, steps } = formCopy;
+  console.log(_id, title, tags, description, steps);
+  await fetch(BASE_URL + 'editreport', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      _id: _id,
+      title: title,
+      tags: tags,
+      description: description,
+      steps: steps
+    })
+  }).catch(err => console.log('Fetch error', err)); 
 }
 
 const deleteReport = async (id) => {
