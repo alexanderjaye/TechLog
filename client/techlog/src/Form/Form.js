@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -20,8 +20,6 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       const description = document.getElementById('report__description__input').value;
       const steps = stepsState;
 
-      console.log(location.pathname);
-
       //Form validation
       if (title === '' || searchTags.length === 0 || description === '') {
         console.log('Missing fields!');
@@ -36,8 +34,7 @@ const Form = ( { formSubmit, formPatch, form } ) => {
         console.log('patch');
         formPatch(title, searchTags, description, steps);
       }
-    
-
+  
       formReset();
     }
   
@@ -57,7 +54,8 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       const checkBoxes = document.querySelectorAll('.search-tag__checkbox');
       checkBoxes.forEach(checkbox => {
         if (checkbox.checked) 
-          searchTags.push(`#${checkbox.value}`)
+          //searchTags.push(`#${checkbox.value}`)
+          searchTags.push(checkbox.value);
         }
       );
       const customTagsCopy = [...customTags];
@@ -72,11 +70,14 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       if (customTag === '') return;
       //Set tag state
       const customTagsCopy = [...customTags];
-      customTagsCopy.push(`#${customTag}`);
+      //customTagsCopy.push(`#${customTag}`);
+      customTagsCopy.push(customTag);
       setCustomTags(customTagsCopy);
       //Append new tag to DOM
       const newTag = document.createElement('li');
+      //const deleteBtn = document.createElement('button');
       newTag.textContent = customTag;
+      //newTag.appendChild(deleteBtn);
       document.getElementById('custom__tag__hook').appendChild(newTag);
       document.getElementById('custom__tag__input').value = '';
     }
@@ -98,37 +99,68 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       document.getElementById('add__step').value='';
     }
 
+    //Event listener to remove tags
+    useEffect( () => {
+      document.querySelector('.report__search-tags').addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') event.target.parentNode.removeChild(event.target);
+      })},
+    []);
+
+    //Event listener to remove steps
+    useEffect( () => {
+      document.querySelector('.report__steps').addEventListener('click', (event)=> {
+        if (event.target.tagName === 'LI') event.target.parentNode.removeChild(event.target);
+      })}, 
+    []);
+
+
   return (
     <form className="form__container" onSubmit={formHandler} spellCheck="false">
+
       <div className="report__title">
           <label>Title</label>
-          <input id="report__title__input"name="title" type="text"></input>
+          <input id="report__title__input"name="title" type="text" defaultValue={form ? form.title : ''}></input>
       </div>
+
       <div className="report__search-tags">
-          <label>Search Tags</label>
-          <div className="report__search-tags__fixed">
-            <label>Kyst</label>
-            <input type="checkbox" id="kyst__tag" className="search-tag__checkbox" value="kyst"/>
-            <label>HD</label>
-            <input type="checkbox" id="hd__tag" className="search-tag__checkbox" value="hd"/>
-          </div>
-          <div className="report__search-tags__custom">
-            <label>Custom Tag</label>
-            <input id="custom__tag__input" name="custom__tag" type="text"></input>
-            <button onClick={customTagHandler}>ADD CUSTOM TAG</button>
-          </div>
-          <ul id="custom__tag__hook"></ul>
+        <label>Search Tags</label>
+        
+        {
+          //The checkboxes  will only render in 'newReport' - no 'editReport'
+        }
+        {form ? null :
+        <div className="report__search-tags__fixed">
+          <label>Kyst</label>
+          <input type="checkbox" id="kyst__tag" className="search-tag__checkbox" value="kyst"/>
+          <label>HD</label>
+          <input type="checkbox" id="hd__tag" className="search-tag__checkbox" value="hd"/>
+        </div> }
+
+        <div className="report__search-tags__custom">
+          <label>Custom Tag</label>
+          <input id="custom__tag__input" name="custom__tag" type="text"></input>
+          <button onClick={customTagHandler}>ADD CUSTOM TAG</button>
+        </div>
+        <ul id="custom__tag__hook">{form && form.tags.map((tag, index) => 
+          <li key={index}>{tag}</li>)}
+        </ul>
+
       </div>
+
       <div className="report__description">
         <label>Description</label>
-        <textarea id="report__description__input" rows="10" cols="30"></textarea>
+        <textarea id="report__description__input" rows="10" cols="30" defaultValue={form ? form.description : ''}></textarea>
       </div>
+
       <div className="report__steps">
-          <ul id="report__steps__hook"></ul>
+          <ul id="report__steps__hook">{form && form.steps.map((step, index) => 
+          <li key={index}>{step}</li>)}</ul>
           <input id="add__step" type="text"></input>
           <button onClick={addStepHandler}>ADD STEP</button>
       </div>
+
       <input type="submit" value="Submit"/>
+
     </form>
   )
 }

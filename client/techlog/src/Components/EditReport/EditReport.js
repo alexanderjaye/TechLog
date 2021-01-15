@@ -27,7 +27,7 @@ const EditReport = () => {
     <div className="edit__report__container">
     <h1>EditReport</h1>
     {formEditState === null ? <GetForm formFetch={formFetch}/> :
-    <Form form={formEditState} formPatch={formPatch}/>}
+    <Form form={formEditState[0]} formPatch={formPatch}/>}
   </div>
   )
 }

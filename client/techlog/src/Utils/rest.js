@@ -43,7 +43,7 @@ const postReport = async (title, searchTags, description, steps) => {
 
 const editReport = async (formCopy) => {
   const { _id, title, tags, description, steps } = formCopy;
-  console.log(_id, title, tags, description, steps);
+
   await fetch(BASE_URL + 'editreport', {
     method: 'PATCH',
     headers: {
