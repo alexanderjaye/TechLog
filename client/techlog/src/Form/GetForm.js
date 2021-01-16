@@ -12,9 +12,11 @@ const GetForm = ({ formFetch }) => {
 
   return (
     <div className="getform__container">
-      <label>Report ID:</label>
-      <input id="report__id" name="report__id" type="text"></input>
-      <button onClick={getReport}>FIND</button>
+      <div className="getform__input">
+        <h3>REPORT ID:</h3>
+        <input id="report__id" name="report__id" type="text"></input>
+        <button onClick={getReport}>FIND REPORT</button>
+      </div>
     </div>
   )
 }

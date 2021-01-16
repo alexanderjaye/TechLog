@@ -22,7 +22,7 @@ const SearchBar = ({ searchTagHandler }) => {
 
   return (
     <div className="searchbar__container">
-      <h2>Add search tag:</h2>
+      <i className="fas fa-hashtag"></i>
       <input 
         className="searchbar__input" 
         type="text" 

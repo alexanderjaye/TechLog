@@ -1,17 +1,22 @@
 .searchbar__container {
   display: flex;
   justify-content: center;
-  margin: 2em;
+  margin-top: 2em;
+  margin-bottom: 1em;
   width: 80%;
 }
 
-.searchbar__container h2 {
+.searchbar__container i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200%;
   margin-right: 0.6em;
 }
 
 .searchbar__input {
   width: 30%;
-  padding: 0.6em;
+  padding: 0.4em;
   margin-right: 0.6em;
 }
 
@@ -20,4 +25,6 @@
 }
 
 .searchbar__submit-btn {
+  padding: 0.6em;
+  width: 8em;
 }

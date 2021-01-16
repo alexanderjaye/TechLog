@@ -31,7 +31,7 @@
 
 .searchitem__container li {
   padding: 5px;
-  color: blue;
+  color: var(--color-tag);
 }
 
 .searchitem__container__description {
@@ -41,7 +41,7 @@
 }
 
 .searchitem__container__description p {
-  color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 
 .searchitem__container button {

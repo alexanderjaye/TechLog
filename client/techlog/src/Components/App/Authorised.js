@@ -38,20 +38,22 @@ const Authorised = ({logout}) => {
 
   return (
     <Router>
-      <div className="main-app">
-        <Navbar 
-          logout={logout}
-          mode={mode}
-          toggleMode={toggleMode}
-          admin={admin}
-          />
-        <Switch>
-          <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin}/>)}/>  
-          <Route exact path = '/new' component={NewReport}/>
-          <Route exact path = '/edit' component={EditReport}></Route>
-          <Route exact path = '/logout' component={Login}/>
-        </Switch>
-        <Footer/>
+      <div className="footer-wrap">
+        <div className="main-app">
+          <Navbar 
+            logout={logout}
+            mode={mode}
+            toggleMode={toggleMode}
+            admin={admin}
+            />
+          <Switch>
+            <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin}/>)}/>  
+            <Route exact path = '/new' component={NewReport}/>
+            <Route exact path = '/edit' component={EditReport}></Route>
+            <Route exact path = '/logout' component={Login}/>
+          </Switch>
+        </div>
+          <Footer/>
       </div>
     </Router>
 

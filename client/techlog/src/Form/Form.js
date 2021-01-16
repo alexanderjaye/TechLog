@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 
 import SearchTags from './SearchTags';
 
 import './Form.css';
 
 //Note formSubmit comes from NewReport.js, and formPatch from EditReport.js
-const Form = ( { formSubmit, formPatch, form } ) => {
+const Form = ( { formSubmit, formPatch, form, history } ) => {
 
   const [customTags, setCustomTags] = useState([]);
   const [stepsState, setSteps] = useState([]);
@@ -32,8 +32,15 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       //Check what route currently on - if new, formSubmit, and if edit, formPatch
       if (location.pathname === '/new') formSubmit(title, searchTags, description, steps);
       else if (location.pathname === '/edit') formPatch(title, searchTags, description, steps);
-  
+      
+      setCustomTags([]);
+      setSteps([]);
       formReset();
+      redirect();
+    }
+
+    const redirect = () => {
+      history.push('/search');
     }
   
     //Form field reset
@@ -48,16 +55,27 @@ const Form = ( { formSubmit, formPatch, form } ) => {
   
     //On form submit, merges checkbox tags and custom tags
     const tagsHandler = () => {
+
       let searchTags = [];
+
+      //Make copy of current tags state
+      const customTagsCopy = [...customTags];
+
+      //get all populated checkboxes
       const checkBoxes = document.querySelectorAll('.search-tag__checkbox');
       checkBoxes.forEach(checkbox => {
         if (checkbox.checked) 
-          //searchTags.push(`#${checkbox.value}`)
           searchTags.push(checkbox.value);
         }
       );
-      const customTagsCopy = [...customTags];
-      searchTags = [...searchTags, ...customTagsCopy];
+
+      //Get all rendered tags
+      const renderedTagLI = document.querySelectorAll('.search-tag__custom');
+      const renderedTags = [];
+      renderedTagLI.forEach(value => renderedTags.push(value.innerText.substring(1))); 
+      
+      //merge all tags
+      searchTags = [...searchTags, ...customTagsCopy, ...renderedTags];
       return searchTags;
     }
   
@@ -68,12 +86,11 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       if (customTag === '') return;
       //Set tag state
       const customTagsCopy = [...customTags];
-      //customTagsCopy.push(`#${customTag}`);
       customTagsCopy.push(customTag);
       setCustomTags(customTagsCopy);
       //Append new tag to DOM
       const newTag = document.createElement('li');
-      newTag.textContent = customTag;
+      newTag.textContent = `#${customTag}`;
       document.getElementById('custom__tag__hook').appendChild(newTag);
       document.getElementById('custom__tag__input').value = '';
     }
@@ -107,7 +124,7 @@ const Form = ( { formSubmit, formPatch, form } ) => {
     <form className="form__container" onSubmit={formHandler} spellCheck="false">
 
       <div className="report__title">
-          <label>Title</label>
+          <label>Report Title</label>
           <input id="report__title__input" 
                  name="title" 
                  type="text" 
@@ -141,4 +158,4 @@ const Form = ( { formSubmit, formPatch, form } ) => {
   )
 }
 
-export default Form;
+export default withRouter(Form);

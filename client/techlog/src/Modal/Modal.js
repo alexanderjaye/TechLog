@@ -2,16 +2,23 @@ import React, {Fragment} from 'react';
 
 import './Modal.css';
 
+import { modalAnimationOut } from '../Utils/animations';
+
 import rest from '../Utils/rest';
 
 const Modal = ({admin, id, title, tags, description, steps, toggleModal, callReports}) => {
 
   const deleteReport = () => {
     rest.deleteReport(id);
-    callReports();  
+    callReports();
+    toggleModal(); 
   }
 
-  console.log(admin);
+  const closeModal =() => {
+    //modalAnimationOut();
+    toggleModal();
+  }
+
 
   return (
     <Fragment>
@@ -26,7 +33,7 @@ const Modal = ({admin, id, title, tags, description, steps, toggleModal, callRep
 
       <div className="modal__tags">
         <label>Tags</label>
-        <ul>{tags.map((tag, index) => <li key={index}>{tag}</li>)}</ul>
+        <ul>{tags.map((tag, index) => <li key={index}>#{tag}</li>)}</ul>
       </div>
      
       <div className="modal__main-body">
@@ -37,7 +44,7 @@ const Modal = ({admin, id, title, tags, description, steps, toggleModal, callRep
       </div>
 
       <div className="modal__buttons">
-        <button onClick={toggleModal}>CLOSE</button>
+        <button onClick={closeModal}>CLOSE</button>
         {admin &&
           <button onClick={deleteReport}>DELETE</button> 
         }

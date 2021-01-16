@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './SearchItem.css';
 
-import SearchItemTag from './SearchItemTag';
+import { modalAnimationIn } from '../../Utils/animations';
 
+import SearchItemTag from './SearchItemTag';
 import Backdrop from '../../Modal/Backdrop';
 
 
@@ -18,6 +19,13 @@ const SearchItem = ( {admin, id, title, tags, searchTags, description, steps, ca
     })
     return flag;
   }
+
+  //Animate modal on way in
+  useEffect( () => {
+    if (viewModal === true) {
+      modalAnimationIn();
+    } 
+  }, [viewModal]);
 
   const toggleModal = () => {
     setViewModal(!viewModal);

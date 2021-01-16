@@ -1,4 +1,4 @@
-html {
+/* html {
   --color-primary: #fbfbfb;
   --color-secondary: #d2282f;
   --color-text-primary: #2c2c24;
@@ -12,7 +12,7 @@ html[data-theme="dark"] {
   --color-text-primary: #f7fafc;
   --color-text-secondary: #e2e8f0;
   --color-accent: #81e6d9;
-}
+} */
 
 .modal__container {
   width: 90%;

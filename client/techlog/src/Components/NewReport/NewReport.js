@@ -14,7 +14,6 @@ const NewReport = () => {
 
   return (
     <div className="new__report__container">
-      <h1>NewReport</h1>
       <Form
         formSubmit={formSubmit}
       />

@@ -21,14 +21,18 @@ html {
   --color-text-primary: #2c2c24;
   --color-accent: #add8e6;
   --color-accent-secondary: #f0f0f0;
+  --color-tag: blue;
+  --color-background: #fff;
 }
 
 html[data-theme="dark"] {
   --color-primary: #81e6d9;
   --color-secondary: #283141;
   --color-text-primary: #f7fafc;
-  --color-accent: #81e6d9;
-  --color-accent-secondary: #f5f5f5;
+  --color-accent: #ccff00;
+  --color-accent-secondary: #81e6d9;
+  --color-tag: #283141;
+  --color-background: #a9a9a9;
 }
 
 .body {
@@ -39,13 +43,17 @@ html[data-theme="dark"] {
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
+  border: none;
   color: var(--color-primary);
   font-weight: 600;
   background-color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
 }
 
 * button:hover {
-  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
 }
 
 /*Smooth transition between light/dark mode*/

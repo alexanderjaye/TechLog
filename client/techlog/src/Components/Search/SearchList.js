@@ -27,7 +27,7 @@ const SearchList = ({ admin }) => {
   //Add search tag
   const searchTagHandler = (value) => {
     const prevTags = [...searchTags];  //Copy as an array so a ref value
-    if (value.charAt(0) !== '#') value = `#${value}`;
+    //if (value.charAt(0) !== '#') value = `#${value}`;
     if (!prevTags.includes(value)) prevTags.push(value);
     setSearchTags(prevTags);
   }
@@ -39,14 +39,14 @@ const SearchList = ({ admin }) => {
     setSearchTags(filterTags);
   }
 
-  //Use useEffect to filter on searchTerm state change
-
   return (
     <div className="searchlist__container">
+
       <SearchBar 
         classname="searchlist__searchbar"
         searchTagHandler={searchTagHandler}
       />
+
       <ul 
         className="searchlist__searchtags">
         {searchTags.length !== 0 &&
@@ -56,6 +56,7 @@ const SearchList = ({ admin }) => {
           deleteTagHandler={() => deleteTagHandler(tag)}  
         />)}
       </ul>
+      
       <ul
         className="searchlist__searchitems">
         {reports.length !== 0 ?

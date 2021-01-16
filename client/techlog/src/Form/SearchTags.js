@@ -27,11 +27,11 @@ const SearchTags = ({form, customTagHandler}) => {
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
             <p>Kyst</p>
-            <input type="checkbox" id="kyst__tag"/>
+            <input type="checkbox" className="search-tag__checkbox" value="kyst"/>
           </div>
           <div className="search-tag__fixed">
             <p>Schilling</p>
-            <input type="checkbox" id="schilling__tag"/>
+            <input type="checkbox" className="search-tag__checkbox" value="schilling"/>
           </div>
         </div>
           
@@ -40,15 +40,15 @@ const SearchTags = ({form, customTagHandler}) => {
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
             <p>ROV</p>
-            <input type="checkbox" id="rov__tag"/>
+            <input type="checkbox" className="search-tag__checkbox" value="ROV"/>
           </div>
           <div className="search-tag__fixed">
             <p>TMS</p>
-            <input type="checkbox" id="tms__tag"/>
+            <input type="checkbox" className="search-tag__checkbox" valu="TMS"/>
           </div>
           <div className="search-tag__fixed">
             <p>Winch</p>
-            <input type="checkbox" id="WINCH__tag"/>
+            <input type="checkbox" className="search-tag__checkbox" value="winch"/>
           </div>
         </div>
 
@@ -57,19 +57,19 @@ const SearchTags = ({form, customTagHandler}) => {
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
             <p>Gyro</p>
-            <input type="checkbox" id="gryo__tag"/>
+            <input type="checkbox" className="search-tag__checkbox"/>
           </div>
           <div className="search-tag__fixed">
             <p>Altimeter</p>
-            <input type="checkbox" id="alt__tag"/>
+            <input type="checkbox" className="search-tag__checkbox"/>
           </div>
           <div className="search-tag__fixed">
             <p>Motor</p>
-            <input type="checkbox" id="motor__tag"/>
+            <input type="checkbox" className="search-tag__checkbox"/>
           </div>
           <div className="search-tag__fixed">
             <p>Pump</p>
-            <input type="checkbox" id="pump__tag"/>
+            <input type="checkbox" className="search-tag__checkbox"/>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ const SearchTags = ({form, customTagHandler}) => {
     <div className="report__search-tags__custom">
       {form ? <label>Tags</label> : <label>Custom Tags</label>}
       <ul id="custom__tag__hook">{form && form.tags.map((tag, index) => 
-        <li key={index} className="search-tag__custom">{tag}</li>)}
+        <li key={index} className="search-tag__custom">#{tag}</li>)}
       </ul>
       <div className="report__search-tags__input">
         <input id="custom__tag__input" name="custom__tag" type="text"></input>
