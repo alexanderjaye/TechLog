@@ -19,9 +19,15 @@ const Authorised = ({logout}) => {
 
   //Mode change
   const toggleMode = () => {
-    trans();
-    setMode(mode === 'light' ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', mode);
+    if (mode === 'light') {
+      trans();
+      setMode('dark'); 
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      trans();
+      setMode('light'); 
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
   }
 
   const trans = () => {

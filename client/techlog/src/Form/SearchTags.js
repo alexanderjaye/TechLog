@@ -22,7 +22,7 @@ const SearchTags = ({form, customTagHandler}) => {
 
     <label>Search Tags</label>
 
-        <p>Vehicle</p>
+        <p>Manufacturer</p>
         <hr></hr>
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
@@ -30,8 +30,8 @@ const SearchTags = ({form, customTagHandler}) => {
             <input type="checkbox" id="kyst__tag"/>
           </div>
           <div className="search-tag__fixed">
-            <p>HD</p>
-            <input type="checkbox" id="hd__tag"/>
+            <p>Schilling</p>
+            <input type="checkbox" id="schilling__tag"/>
           </div>
         </div>
           
@@ -46,6 +46,10 @@ const SearchTags = ({form, customTagHandler}) => {
             <p>TMS</p>
             <input type="checkbox" id="tms__tag"/>
           </div>
+          <div className="search-tag__fixed">
+            <p>Winch</p>
+            <input type="checkbox" id="WINCH__tag"/>
+          </div>
         </div>
 
         <p>Equipment</p>
@@ -59,6 +63,14 @@ const SearchTags = ({form, customTagHandler}) => {
             <p>Altimeter</p>
             <input type="checkbox" id="alt__tag"/>
           </div>
+          <div className="search-tag__fixed">
+            <p>Motor</p>
+            <input type="checkbox" id="motor__tag"/>
+          </div>
+          <div className="search-tag__fixed">
+            <p>Pump</p>
+            <input type="checkbox" id="pump__tag"/>
+          </div>
         </div>
 
     </div>}
@@ -70,7 +82,7 @@ const SearchTags = ({form, customTagHandler}) => {
       </ul>
       <div className="report__search-tags__input">
         <input id="custom__tag__input" name="custom__tag" type="text"></input>
-        <button onClick={customTagHandler}>ADD CUSTOM TAG</button>
+        <button onClick={customTagHandler}>ADD TAG</button>
       </div>
     </div>
 

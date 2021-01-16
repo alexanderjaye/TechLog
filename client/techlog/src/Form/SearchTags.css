@@ -28,7 +28,6 @@
 .search-tag__fixed {
   display: flex;
   padding: 5px;
-  /* align-items: center; */
 }
 
 .search-tag__fixed p {

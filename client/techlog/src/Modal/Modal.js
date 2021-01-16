@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import './Modal.css';
 
@@ -14,21 +14,36 @@ const Modal = ({admin, id, title, tags, description, steps, toggleModal, callRep
   console.log(admin);
 
   return (
+    <Fragment>
     <div className="modal__container">
+
       <h2>{title}</h2>
-      <p>Report ID</p>
-      {id}
-      <p>Tags</p>
-      <ul>{tags.map((tag, index) => <li key={index}>{tag}</li>)}</ul>
-      <p>Description</p>
-      {description}
-      <p>Steps</p>
-      <ul>{steps.map((step, index) => <li key={index}>{step}</li>)}</ul>
-      <button onClick={toggleModal}>CLOSE</button>
-      {admin &&
-        <button onClick={deleteReport}>DELETE</button> 
-      }
+
+      <div className="modal__id">
+        <label>Report ID: </label>
+        {id}
+      </div>
+
+      <div className="modal__tags">
+        <label>Tags</label>
+        <ul>{tags.map((tag, index) => <li key={index}>{tag}</li>)}</ul>
+      </div>
+     
+      <div className="modal__main-body">
+        <label>Description</label>
+        <p>{description}</p>
+        <label>Steps</label>
+        <ul>{steps.map((step, index) => <li key={index}>{index + 1}. {step}</li>)}</ul>
+      </div>
+
+      <div className="modal__buttons">
+        <button onClick={toggleModal}>CLOSE</button>
+        {admin &&
+          <button onClick={deleteReport}>DELETE</button> 
+        }
+      </div>
     </div>
+    </Fragment>
   ) 
 }
 

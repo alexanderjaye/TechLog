@@ -17,7 +17,7 @@ const Navbar = ({admin, logout, mode, toggleMode}) => {
         {admin ? <Link to='/edit'>Edit</Link> : null}
         <Link to="/logout" onClick={logout}>Logout</Link>
         <div className="mode__div">
-          {mode === 'light' ? <i className="fas fa-sun"></i> : <i className="fas fa-moon"></i>}
+          {mode === 'light' ? <i className="fas fa-moon"></i> : <i className="fas fa-sun"></i>}
           <button className="navbar__mode-switch" onClick={toggleMode}>X</button>
         </div>
       </div>

@@ -6,6 +6,7 @@
   width: 350px;
   height: 200px;
   margin: 0.4em;
+  margin-bottom: 1.5em;
   padding: 0.2em;
   border: 1px solid black;
   box-shadow: 0 8px 6px -6px black;
@@ -20,6 +21,7 @@
 
 .searchitem__container h3 {
   margin-bottom: 8px;
+  color: var(--color-text-primary);
 }
 
 .searchitem__container ul {
@@ -29,7 +31,7 @@
 
 .searchitem__container li {
   padding: 5px;
-  color: white;
+  color: blue;
 }
 
 .searchitem__container__description {
@@ -39,7 +41,7 @@
 }
 
 .searchitem__container__description p {
-  color: white;
+  color: var(--color-accent);
 }
 
 .searchitem__container button {

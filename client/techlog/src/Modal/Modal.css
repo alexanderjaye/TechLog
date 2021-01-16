@@ -18,4 +18,54 @@ html[data-theme="dark"] {
   width: 90%;
   margin: 4em;
   background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.2em;
+}
+
+.modal__container h2 {
+  margin-bottom: 0.6em;
+}
+
+.modal__id {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.6em;
+}
+
+.modal__id label {
+  margin-right: 1em;
+}
+
+.modal__tags {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.6em;
+}
+
+.modal__tags ul {
+  display: flex;
+}
+
+.modal__tags li {
+  margin-left: 1em;
+}
+
+.modal__main-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__main-body p {
+  margin-bottom: 0.6em;
+}
+
+.modal__buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  margin-left: 10%;
+  bottom: 5px;
 }

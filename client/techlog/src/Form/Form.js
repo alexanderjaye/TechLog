@@ -73,9 +73,7 @@ const Form = ( { formSubmit, formPatch, form } ) => {
       setCustomTags(customTagsCopy);
       //Append new tag to DOM
       const newTag = document.createElement('li');
-      //const deleteBtn = document.createElement('button');
       newTag.textContent = customTag;
-      //newTag.appendChild(deleteBtn);
       document.getElementById('custom__tag__hook').appendChild(newTag);
       document.getElementById('custom__tag__input').value = '';
     }
@@ -134,10 +132,10 @@ const Form = ( { formSubmit, formPatch, form } ) => {
             <button onClick={addStepHandler}>ADD STEP</button>
           </div>
           <ul id="report__steps__hook">{form && form.steps.map((step, index) => 
-          <li key={index}>{step}</li>)}</ul>
+          <li key={index}>{index + 1}. {step}</li>)}</ul>
       </div>
 
-      <input className="report__submit__btn" type="submit" value="Submit"/>
+      <input className="report__submit__btn" type="submit" value="SUBMIT"/>
 
     </form>
   )
