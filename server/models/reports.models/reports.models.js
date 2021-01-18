@@ -10,8 +10,10 @@ const getReport = (id) => {
   return reply;
 }
 
-const newReport = (title, description, tags, steps, comments) => {
-  const reply = Reports.create({title, description, tags, steps, comments});
+const newReport = (title, description, tags, steps, images) => {
+  console.log('Models', images);
+  console.log('Tags', tags);
+  const reply = Reports.create({title, description, tags, steps, images});
   return reply;
 }
 

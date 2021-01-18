@@ -71,6 +71,7 @@ const SearchList = ({ admin, reportId }) => {
           tags={report.tags}
           description={report.description}
           steps={report.steps}
+          images={report.images}
           reportId={reportId}
           searchTags={searchTags}
           callReports={callReports}

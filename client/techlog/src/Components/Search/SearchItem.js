@@ -8,7 +8,7 @@ import SearchItemTag from './SearchItemTag';
 import Backdrop from '../../Modal/Backdrop';
 
 
-const SearchItem = ( {admin, id, title, tags, searchTags, description, steps, reportId, callReports} ) => {
+const SearchItem = ( {admin, id, title, tags, searchTags, description, steps, images, reportId, callReports} ) => {
 
   const [viewModal, setViewModal ] = useState(false);
 
@@ -43,6 +43,7 @@ const SearchItem = ( {admin, id, title, tags, searchTags, description, steps, re
       tags={tags}
       description={description}
       steps={steps}
+      images={images}
       reportId={reportId}
       toggleModal={toggleModal}  
       callReports={callReports}

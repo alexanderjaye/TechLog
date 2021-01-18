@@ -16,6 +16,8 @@ html[data-theme="dark"] {
 
 .modal__container {
   width: 90%;
+  /* height: 90%; */
+  overflow-y: auto;
   margin: 4em;
   background-color: var(--color-primary);
   display: flex;
@@ -36,6 +38,10 @@ html[data-theme="dark"] {
 
 .modal__id label {
   margin-right: 1em;
+}
+
+.modal__id button {
+  margin-left: 2em;
 }
 
 .modal__tags {
@@ -61,11 +67,23 @@ html[data-theme="dark"] {
   margin-bottom: 0.6em;
 }
 
+.modal__image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__image-container-images {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+}
+
 .modal__buttons {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   justify-content: space-evenly;
   width: 80%;
   margin-left: 10%;
-  bottom: 5px;
+  /* bottom: 5px; */
 }

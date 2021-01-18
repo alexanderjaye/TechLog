@@ -1,5 +1,5 @@
 .getform__container {
-  height: calc(75vh - 50px);
+  height: calc(80vh - 50px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -23,4 +23,8 @@
   padding: 0.5em;
   width: 16em;
   margin-right: 2em;
+}
+
+.getform__input button {
+  margin-right: 1em;
 }

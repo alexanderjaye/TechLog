@@ -25,6 +25,8 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       const description = document.getElementById('report__description__input').value;
       const steps = stepsState;
 
+      const pics = document.querySelectorAll('.pics');
+    
       //Form validation
       if (title === '' || searchTags.length === 0 || description === '') {
         console.log('Missing fields!');
@@ -32,7 +34,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       }
 
       //Check what route currently on - if new, formSubmit, and if edit, formPatch
-      if (location.pathname === '/new') formSubmit(title, searchTags, description, steps);
+      if (location.pathname === '/new') formSubmit(title, searchTags, description, steps, pics);
       else if (location.pathname === '/edit') formPatch(title, searchTags, description, steps);
       
       setCustomTags([]);
@@ -109,7 +111,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       //Append new step to DOM
       const stepsHook = document.getElementById('report__steps__hook');
       const newStep = document.createElement('li');
-      newStep.textContent = customStep;
+      newStep.textContent = `${stepsState.length + 1 } ${customStep}`;
       stepsHook.appendChild(newStep);
       document.getElementById('add__step').value='';
     }
@@ -156,6 +158,14 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
           <ul id="report__steps__hook">{form && form.steps.map((step, index) => 
           <li key={index}>{index + 1}. {step}</li>)}</ul>
       </div>
+
+      {location.pathname === '/new' &&
+      <div className="report__uploads">
+            <label>Upload Pictures</label>
+            <input type="file" className="pics"></input>
+            <input type="file" className="pics"></input>
+            <input type="file" className="pics"></input>
+      </div>}
 
       <input className="report__submit__btn" type="submit" value="SUBMIT"/>
 

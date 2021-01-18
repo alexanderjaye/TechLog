@@ -1,12 +1,18 @@
 import React, {Fragment} from 'react';
 
+//import { Cloudinary } from 'cloudinary-core';
+
 import './Modal.css';
 
 import { modalAnimationOut } from '../Utils/animations';
 
 import rest from '../Utils/rest';
 
-const Modal = ({admin, id, title, tags, description, steps, reportId, toggleModal, callReports}) => {
+import Image from './Image';
+
+const Modal = ({admin, id, title, tags, description, steps, images, reportId, toggleModal, callReports}) => {
+
+  //const cloudinaryCore = new Cloudinary({cloud_name:'demo'});
 
   const deleteReport = () => {
     rest.deleteReport(id);
@@ -48,6 +54,19 @@ const Modal = ({admin, id, title, tags, description, steps, reportId, toggleModa
         <label>Steps</label>
         <ul>{steps.map((step, index) => <li key={index}>{index + 1}. {step}</li>)}</ul>
       </div>
+
+      {images.length ? 
+      <div className="modal__image-container">
+      
+        <label>Images</label>
+
+          <div className="modal__image-container-images">
+            {images.length && images.map((image, index) => <Image
+              key={index}
+              image = {image}
+          />)}
+        </div>
+      </div> : null} 
 
       <div className="modal__buttons">
         <button onClick={closeModal}>CLOSE</button>

@@ -25,7 +25,7 @@ let report = new Schema({
     required: false
   },
 
-  comments: {
+  images: {
     type: [String],
     required: false
   }

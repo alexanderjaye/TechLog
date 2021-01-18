@@ -5,7 +5,7 @@ import './Backdrop.css';
 
 import Modal from './Modal';
 
-const Backdrop = ({admin, id, title, tags, description, steps, reportId, toggleModal, callReports}) => {
+const Backdrop = ({admin, id, title, tags, description, steps, images, reportId, toggleModal, callReports}) => {
 
   return createPortal (
     <div className="backdrop__container">
@@ -15,6 +15,7 @@ const Backdrop = ({admin, id, title, tags, description, steps, reportId, toggleM
              tags={tags}
              description={description}
              steps={steps}
+             images={images}
              reportId={reportId}
              toggleModal={toggleModal} 
              callReports={callReports}/>

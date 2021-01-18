@@ -1,0 +1,8 @@
+.image__img {
+  width: 500px;
+  height: 450px;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid var(--color-text-primary);
+}
