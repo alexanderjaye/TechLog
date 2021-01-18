@@ -5,7 +5,7 @@ import './Backdrop.css';
 
 import Modal from './Modal';
 
-const Backdrop = ({admin, id, title, tags, description, steps, toggleModal, callReports}) => {
+const Backdrop = ({admin, id, title, tags, description, steps, reportId, toggleModal, callReports}) => {
 
   return createPortal (
     <div className="backdrop__container">
@@ -15,6 +15,7 @@ const Backdrop = ({admin, id, title, tags, description, steps, toggleModal, call
              tags={tags}
              description={description}
              steps={steps}
+             reportId={reportId}
              toggleModal={toggleModal} 
              callReports={callReports}/>
     </div>, document.getElementById('backdrop-hook')

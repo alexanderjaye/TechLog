@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import './SearchList.css';
 
+import { listItemAnimation } from '../../Utils/animations'; 
+
 import SearchBar from './SearchBar';
 import SearchTags from './SearchTags';
 import SearchItem from './SearchItem';
 
 import rest from '../../Utils/rest';
 
-const SearchList = ({ admin }) => {
+const SearchList = ({ admin, reportId }) => {
 
   const [reports, setReports] = useState([]);
   const [searchTags, setSearchTags] = useState([]);
@@ -22,6 +24,7 @@ const SearchList = ({ admin }) => {
   const callReports = async () => {
     const dbCall = await rest.getReports();
     setReports(dbCall);
+    listItemAnimation();
   }
 
   //Add search tag
@@ -68,6 +71,7 @@ const SearchList = ({ admin }) => {
           tags={report.tags}
           description={report.description}
           steps={report.steps}
+          reportId={reportId}
           searchTags={searchTags}
           callReports={callReports}
         />)

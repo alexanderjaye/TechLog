@@ -7,7 +7,7 @@ import rest from '../../Utils/rest';
 import GetForm from '../../Form/GetForm'
 import Form from '../../Form/Form'
 
-const EditReport = () => {
+const EditReport = ({editReport}) => {
 
   const [formEditState, setFormEdit] = useState(null);
 
@@ -25,7 +25,7 @@ const EditReport = () => {
 
   return (
     <div className="edit__report__container">
-    {formEditState === null ? <GetForm formFetch={formFetch}/> :
+    {formEditState === null ? <GetForm editReport={editReport} formFetch={formFetch}/> :
     <Form form={formEditState[0]} formPatch={formPatch}/>}
   </div>
   )

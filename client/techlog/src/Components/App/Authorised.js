@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './Authorised.css';
 
+import { modeAnimation } from '../../Utils/animations';
+
 import Navbar from '../Nav/Navbar';
 import SearchList from '../Search/SearchList';
 import NewReport from '../NewReport/NewReport';
@@ -17,8 +19,16 @@ const Authorised = ({logout}) => {
   const [mode, setMode] = useState('light');
   const [admin, setAdmin] = useState(true);
 
+  const [editReport, setEditReport] = useState(null);
+
+  //Variable to store report id for 'copy and paste' function
+  const reportId = (id) => {
+    setEditReport(id);
+  };  
+
   //Mode change
   const toggleMode = () => {
+    modeAnimation();
     if (mode === 'light') {
       trans();
       setMode('dark'); 
@@ -47,9 +57,9 @@ const Authorised = ({logout}) => {
             admin={admin}
             />
           <Switch>
-            <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin}/>)}/>  
+            <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin} reportId={reportId}/>)}/>  
             <Route exact path = '/new' component={NewReport}/>
-            <Route exact path = '/edit' component={EditReport}></Route>
+            <Route exact path = '/edit' render={(props) => (<EditReport {...props} editReport={editReport}/>)}/>
             <Route exact path = '/logout' component={Login}/>
           </Switch>
         </div>
@@ -63,3 +73,4 @@ const Authorised = ({logout}) => {
 export default Authorised;
 
 //<Route exact path = '/search' component={SearchList} admin={admin}/>
+//<Route exact path = '/edit' component={EditReport}></Route>

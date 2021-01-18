@@ -22,6 +22,7 @@ html {
   --color-accent: #add8e6;
   --color-accent-secondary: #f0f0f0;
   --color-tag: blue;
+  --color-tag-delete: red;
   --color-background: #fff;
 }
 
@@ -32,6 +33,7 @@ html[data-theme="dark"] {
   --color-accent: #ccff00;
   --color-accent-secondary: #81e6d9;
   --color-tag: #283141;
+  --color-tag-delete: #81e6d9;
   --color-background: #a9a9a9;
 }
 

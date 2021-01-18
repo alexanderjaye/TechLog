@@ -6,7 +6,7 @@ import { modalAnimationOut } from '../Utils/animations';
 
 import rest from '../Utils/rest';
 
-const Modal = ({admin, id, title, tags, description, steps, toggleModal, callReports}) => {
+const Modal = ({admin, id, title, tags, description, steps, reportId, toggleModal, callReports}) => {
 
   const deleteReport = () => {
     rest.deleteReport(id);
@@ -19,6 +19,11 @@ const Modal = ({admin, id, title, tags, description, steps, toggleModal, callRep
     toggleModal();
   }
 
+  const copyToClipboard =() => {
+    const idInput = document.querySelector('.modal__report-id').textContent;
+    reportId(idInput);
+  }
+
 
   return (
     <Fragment>
@@ -28,7 +33,8 @@ const Modal = ({admin, id, title, tags, description, steps, toggleModal, callRep
 
       <div className="modal__id">
         <label>Report ID: </label>
-        {id}
+        <p className="modal__report-id">{id}</p>
+        <button onClick={copyToClipboard}>COPY ID</button>
       </div>
 
       <div className="modal__tags">

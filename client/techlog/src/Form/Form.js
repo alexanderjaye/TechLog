@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { withRouter, useLocation } from 'react-router-dom';
 
+import { formAnimations } from '../Utils/animations';
+
 import SearchTags from './SearchTags';
 
 import './Form.css';
@@ -119,6 +121,9 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       })}, 
     []);
 
+    useEffect(()=>{
+      formAnimations();
+    },[]);
 
   return (
     <form className="form__container" onSubmit={formHandler} spellCheck="false">

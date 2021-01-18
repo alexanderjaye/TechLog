@@ -6,7 +6,7 @@ import './Navbar.css';
 
 const Navbar = ({admin, logout, mode, toggleMode}) => {
   return (
-    <nav>
+    <nav className="navbar__container">
       <div className="navbar__banner">
         <i className="fas fa-cogs fa-3x"></i>
         <h1 className="navbar__title">TechLog</h1>
