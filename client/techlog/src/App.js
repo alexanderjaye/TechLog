@@ -7,18 +7,21 @@ import Unauthorised from './Components/App/Unauthorised';
 
 function App() {
 
-  //App level state
-  const [authorised, setAuthorised] = useState(true);
+  const authorised = true;
+  // //App level state
+  // const [authorised, setAuthorised] = useState(true);
 
-  //Move to auth class in utils?
-  const logout = () => {
-    setAuthorised(false);
-  }
+  // //Move to auth class in utils?
+  // const logout = () => {
+  //   setAuthorised(false);
+  // }
+
+  //logout={logout}
 
   return (
     <div className="App">
       {authorised ? 
-        <Authorised logout={logout}/> :
+        <Authorised/> :
         <Unauthorised/>}
     </div>
   );

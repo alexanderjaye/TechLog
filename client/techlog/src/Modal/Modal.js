@@ -12,8 +12,6 @@ import Image from './Image';
 
 const Modal = ({admin, id, title, tags, description, steps, images, reportId, toggleModal, callReports}) => {
 
-  //const cloudinaryCore = new Cloudinary({cloud_name:'demo'});
-
   const deleteReport = () => {
     rest.deleteReport(id);
     callReports();
@@ -30,7 +28,6 @@ const Modal = ({admin, id, title, tags, description, steps, images, reportId, to
     reportId(idInput);
   }
 
-
   return (
     <Fragment>
     <div className="modal__container">
@@ -40,7 +37,7 @@ const Modal = ({admin, id, title, tags, description, steps, images, reportId, to
       <div className="modal__id">
         <label>Report ID: </label>
         <p className="modal__report-id">{id}</p>
-        <button onClick={copyToClipboard}>COPY ID</button>
+        {admin && <button onClick={copyToClipboard}>COPY ID</button>}
       </div>
 
       <div className="modal__tags">
@@ -52,12 +49,12 @@ const Modal = ({admin, id, title, tags, description, steps, images, reportId, to
         <label>Description</label>
         <p>{description}</p>
         <label>Steps</label>
-        <ul>{steps.map((step, index) => <li key={index}>{index + 1}. {step}</li>)}</ul>
+        <ul>{steps.map((step, index) => <li key={index}>&bull; {step}</li>)}</ul>
       </div>
 
       {images.length ? 
       <div className="modal__image-container">
-      
+
         <label>Images</label>
 
           <div className="modal__image-container-images">

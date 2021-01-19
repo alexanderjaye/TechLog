@@ -12,7 +12,7 @@ import './Form.css';
 const Form = ( { formSubmit, formPatch, form, history } ) => {
 
   const [customTags, setCustomTags] = useState([]);
-  const [stepsState, setSteps] = useState([]);
+  //const [stepsState, setSteps] = useState([]);
 
   const location = useLocation();
 
@@ -23,7 +23,8 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       const title = document.getElementById('report__title__input').value;
       const searchTags = tagsHandler();
       const description = document.getElementById('report__description__input').value;
-      const steps = stepsState;
+      //const steps = stepsState;
+      const steps = stepsHandler();
 
       const pics = document.querySelectorAll('.pics');
     
@@ -38,7 +39,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       else if (location.pathname === '/edit') formPatch(title, searchTags, description, steps);
       
       setCustomTags([]);
-      setSteps([]);
+      //setSteps([]);
       formReset();
       redirect();
     }
@@ -80,6 +81,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       
       //merge all tags
       searchTags = [...searchTags, ...customTagsCopy, ...renderedTags];
+
       return searchTags;
     }
   
@@ -105,26 +107,48 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       const customStep = document.getElementById('add__step').value;
       if (customStep === '') return;
       //Set steps state
-      const customStepsCopy = [...stepsState];
-      customStepsCopy.push(customStep);
-      setSteps(customStepsCopy);
+      // const customStepsCopy = [...stepsState];
+      // customStepsCopy.push(customStep);
+      // setSteps(customStepsCopy);
       //Append new step to DOM
       const stepsHook = document.getElementById('report__steps__hook');
       const newStep = document.createElement('li');
-      newStep.textContent = `${stepsState.length + 1 } ${customStep}`;
+      newStep.classList.add("report__steps-li");
+      newStep.textContent = customStep;
       stepsHook.appendChild(newStep);
       document.getElementById('add__step').value='';
+      //console.log(stepsState);
     }
 
-    //Event listener to remove steps
+    const stepsHandler = () => {
+      const steps = [];
+      const stepsLi = document.querySelectorAll('.report__steps-li');
+      stepsLi.forEach(step => steps.push(step.innerText));
+      return steps;
+    }
+
+    //Event listener to remove steps from DOM
     useEffect( () => {
       document.querySelector('.report__steps').addEventListener('click', (event)=> {
-        if (event.target.tagName === 'LI') event.target.parentNode.removeChild(event.target);
-      })}, 
+        if (event.target.tagName === 'LI') {
+          // console.log(event.target.textContent);  
+          // console.log(stepsState);       
+          // const customStepsCopy = [...stepsState];   
+          // console.log(customStepsCopy);                 
+          // const removeIndex = customStepsCopy.indexOf(event.target.textContent);
+          // console.log('index', removeIndex);
+          // customStepsCopy.splice(removeIndex, 1);
+          // console.log(customStepsCopy);
+          // setSteps(customStepsCopy);
+          event.target.parentNode.removeChild(event.target);
+        } 
+      })},
     []);
 
     useEffect(()=>{
+      //Run form animations on render
       formAnimations();
+      //setSteps(form.steps);  
     },[]);
 
   return (
@@ -156,7 +180,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             <button onClick={addStepHandler}>ADD STEP</button>
           </div>
           <ul id="report__steps__hook">{form && form.steps.map((step, index) => 
-          <li key={index}>{index + 1}. {step}</li>)}</ul>
+          <li key={index} className="report__steps-li">{step}</li>)}</ul>
       </div>
 
       {location.pathname === '/new' &&

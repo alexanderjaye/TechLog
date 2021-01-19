@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import './Authorised.css';
 
@@ -13,18 +13,30 @@ import EditReport from '../EditReport/EditReport'
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 
-const Authorised = ({logout}) => {
+const Authorised = () => {
 
-  //Authorised App Level State
-  const [mode, setMode] = useState('light');
-  const [admin, setAdmin] = useState(true);
+  //App Level State
+  const [authorised, setAuthorised] = useState(true);     //Logged in or out
+  const [admin, setAdmin] = useState(true);               //Admin mode
+  const [mode, setMode] = useState('light');              //Light / dark mode
 
+  //Variable + func to store report id for 'copy and paste' from /search to /edit 
   const [editReport, setEditReport] = useState(null);
 
-  //Variable to store report id for 'copy and paste' function
   const reportId = (id) => {
     setEditReport(id);
-  };  
+  };
+
+  //Log out of app
+  const logout = () => {
+    setAuthorised(false);
+  }
+
+  //Set admin rights
+  const adminRights = (arg) => {
+    setAdmin(arg);
+    setAuthorised(true);
+  }
 
   //Mode change
   const toggleMode = () => {
@@ -40,6 +52,7 @@ const Authorised = ({logout}) => {
     }
   }
 
+  //Transition for mode change
   const trans = () => {
     document.documentElement.classList.add('transition');
     window.setTimeout(() => {
@@ -53,6 +66,7 @@ const Authorised = ({logout}) => {
           <Navbar 
             logout={logout}
             mode={mode}
+            authorised={authorised}
             toggleMode={toggleMode}
             admin={admin}
             />
@@ -60,7 +74,8 @@ const Authorised = ({logout}) => {
             <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin} reportId={reportId}/>)}/>  
             <Route exact path = '/new' component={NewReport}/>
             <Route exact path = '/edit' render={(props) => (<EditReport {...props} editReport={editReport}/>)}/>
-            <Route exact path = '/logout' component={Login}/>
+            <Route exact path = '/logout' render={(props) => (<Login {...props} adminRights={adminRights}/>)}/>
+            <Redirect to="/search"/>
           </Switch>
         </div>
           <Footer/>
@@ -74,3 +89,4 @@ export default Authorised;
 
 //<Route exact path = '/search' component={SearchList} admin={admin}/>
 //<Route exact path = '/edit' component={EditReport}></Route>
+//<Route exact path = '/logout' component={Login}/>

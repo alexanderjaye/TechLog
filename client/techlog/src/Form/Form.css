@@ -69,6 +69,10 @@ label {
   width: 15%;
 }
 
+.report__steps-li {
+  list-style-type: disc;
+}
+
 /*Upload reports*/
 .report__uploads {
   display: flex;
