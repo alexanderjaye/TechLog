@@ -12,7 +12,6 @@ const getReports = async () => {
     .then(data => {dbCall = data})
     .catch(err => console.log('Fetch error', err));
 
-    //console.log(dbCall);
     return dbCall;
 }
 
@@ -25,16 +24,13 @@ const getReport = async (id) => {
     .then(data => {dbCall = data})
     .catch(err => console.log('Fetch error', err));
 
-    //console.log(dbCall);
     return dbCall;
 }
 
 const postReport = async (title, searchTags, description, steps, filterPics) => {
   
-    //Format pics if required
+    //Format + upload pics if required
     let picsUrls = await uploadPics(filterPics);
-
-    console.log(steps);
 
     await fetch(BASE_URL + 'postreport', {
     method: 'POST',
@@ -49,7 +45,6 @@ const postReport = async (title, searchTags, description, steps, filterPics) => 
       images: picsUrls
     })
   }).catch(err => console.log('Fetch error (SERVER)', err)); 
-
 }
 
 const uploadPics = async (filterPics) => {

@@ -30,7 +30,6 @@ const SearchList = ({ admin, reportId }) => {
   //Add search tag
   const searchTagHandler = (value) => {
     const prevTags = [...searchTags];  //Copy as an array so a ref value
-    //if (value.charAt(0) !== '#') value = `#${value}`;
     if (!prevTags.includes(value)) prevTags.push(value);
     setSearchTags(prevTags);
   }

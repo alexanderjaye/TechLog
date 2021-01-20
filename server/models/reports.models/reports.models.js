@@ -11,8 +11,6 @@ const getReport = (id) => {
 }
 
 const newReport = (title, description, tags, steps, images) => {
-  console.log('Models', images);
-  console.log('Tags', tags);
   const reply = Reports.create({title, description, tags, steps, images});
   return reply;
 }

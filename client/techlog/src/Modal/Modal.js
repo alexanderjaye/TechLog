@@ -1,10 +1,6 @@
 import React, {Fragment} from 'react';
 
-//import { Cloudinary } from 'cloudinary-core';
-
 import './Modal.css';
-
-import { modalAnimationOut } from '../Utils/animations';
 
 import rest from '../Utils/rest';
 
@@ -19,7 +15,6 @@ const Modal = ({admin, id, title, tags, description, steps, images, reportId, to
   }
 
   const closeModal =() => {
-    //modalAnimationOut();
     toggleModal();
   }
 

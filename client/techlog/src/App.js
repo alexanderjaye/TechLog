@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
 import Authorised from './Components/App/Authorised';
@@ -7,16 +7,8 @@ import Unauthorised from './Components/App/Unauthorised';
 
 function App() {
 
+  //For future login functionality
   const authorised = true;
-  // //App level state
-  // const [authorised, setAuthorised] = useState(true);
-
-  // //Move to auth class in utils?
-  // const logout = () => {
-  //   setAuthorised(false);
-  // }
-
-  //logout={logout}
 
   return (
     <div className="App">

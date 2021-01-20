@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import './SearchTags.css'
 
 const SearchTags = ({form, customTagHandler}) => {
 
-  const location = useLocation();
-  
   //Event listener to remove tags
   useEffect( () => {
     document.querySelector('.report__search-tags').addEventListener('click', (event) => {
@@ -26,12 +23,16 @@ const SearchTags = ({form, customTagHandler}) => {
         <hr></hr>
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
-            <p>Kyst</p>
+            <p>Kystdesign</p>
             <input type="checkbox" className="search-tag__checkbox" value="kyst"/>
           </div>
           <div className="search-tag__fixed">
-            <p>Schilling</p>
+            <p>Schilling Robotics</p>
             <input type="checkbox" className="search-tag__checkbox" value="schilling"/>
+          </div>
+          <div className="search-tag__fixed">
+            <p>Reach</p>
+            <input type="checkbox" className="search-tag__checkbox" value="reach"/>
           </div>
         </div>
           
@@ -50,26 +51,34 @@ const SearchTags = ({form, customTagHandler}) => {
             <p>Winch</p>
             <input type="checkbox" className="search-tag__checkbox" value="winch"/>
           </div>
+          <div className="search-tag__fixed">
+            <p>Sensor</p>
+            <input type="checkbox" className="search-tag__checkbox" value="sensor"/>
+          </div>
         </div>
 
         <p>Equipment</p>
         <hr></hr>
         <div className="search-tag__fixed__section">
+        <div className="search-tag__fixed">
+            <p>Manipulator</p>
+            <input type="checkbox" className="search-tag__checkbox" value="manipulator"/>
+          </div>
           <div className="search-tag__fixed">
             <p>Gyro</p>
-            <input type="checkbox" className="search-tag__checkbox"/>
+            <input type="checkbox" className="search-tag__checkbox" value="gyro"/>
           </div>
           <div className="search-tag__fixed">
             <p>Altimeter</p>
-            <input type="checkbox" className="search-tag__checkbox"/>
+            <input type="checkbox" className="search-tag__checkbox" value="altimeter"/>
           </div>
           <div className="search-tag__fixed">
             <p>Motor</p>
-            <input type="checkbox" className="search-tag__checkbox"/>
+            <input type="checkbox" className="search-tag__checkbox" value="motor"/>
           </div>
           <div className="search-tag__fixed">
             <p>Pump</p>
-            <input type="checkbox" className="search-tag__checkbox"/>
+            <input type="checkbox" className="search-tag__checkbox" value="pump"/>
           </div>
         </div>
 

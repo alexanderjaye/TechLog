@@ -12,50 +12,32 @@ import './Form.css';
 const Form = ( { formSubmit, formPatch, form, history } ) => {
 
   const [customTags, setCustomTags] = useState([]);
-  //const [stepsState, setSteps] = useState([]);
 
   const location = useLocation();
 
     //Form submit handler
-    const formHandler = (event) => {
+    const formHandler = async (event) => {
 
       event.preventDefault();
       const title = document.getElementById('report__title__input').value;
       const searchTags = tagsHandler();
       const description = document.getElementById('report__description__input').value;
-      //const steps = stepsState;
       const steps = stepsHandler();
-
       const pics = document.querySelectorAll('.pics');
     
-      //Form validation
+      //Baisc form validation
       if (title === '' || searchTags.length === 0 || description === '') {
-        console.log('Missing fields!');
+        alert('Missing fields!');
         return;
       }
 
       //Check what route currently on - if new, formSubmit, and if edit, formPatch
-      if (location.pathname === '/new') formSubmit(title, searchTags, description, steps, pics);
-      else if (location.pathname === '/edit') formPatch(title, searchTags, description, steps);
+      if (location.pathname === '/new') await formSubmit(title, searchTags, description, steps, pics);
+      else if (location.pathname === '/edit') await formPatch(title, searchTags, description, steps);
       
+      //Reset tags state and redirect
       setCustomTags([]);
-      //setSteps([]);
-      formReset();
-      redirect();
-    }
-
-    const redirect = () => {
       history.push('/search');
-    }
-  
-    //Form field reset
-    const formReset = () => {
-      document.getElementById('report__title__input').value = ''; 
-      const checkBoxs = document.querySelectorAll('.search-tag__checkbox');
-      checkBoxs.forEach(checkbox => checkbox.checked = false);
-      document.getElementById('custom__tag__hook').innerHTML = '';
-      document.getElementById('report__description__input').value = '';
-      document.getElementById('report__steps__hook').innerHTML = '';
     }
   
     //On form submit, merges checkbox tags and custom tags
@@ -68,6 +50,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
 
       //get all populated checkboxes
       const checkBoxes = document.querySelectorAll('.search-tag__checkbox');
+      console.log(checkBoxes);
       checkBoxes.forEach(checkbox => {
         if (checkbox.checked) 
           searchTags.push(checkbox.value);
@@ -78,7 +61,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       const renderedTagLI = document.querySelectorAll('.search-tag__custom');
       const renderedTags = [];
       renderedTagLI.forEach(value => renderedTags.push(value.innerText.substring(1))); 
-      
+      console.log(searchTags, customTagsCopy, renderedTags);
       //merge all tags
       searchTags = [...searchTags, ...customTagsCopy, ...renderedTags];
 
@@ -106,18 +89,12 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       event.preventDefault();
       const customStep = document.getElementById('add__step').value;
       if (customStep === '') return;
-      //Set steps state
-      // const customStepsCopy = [...stepsState];
-      // customStepsCopy.push(customStep);
-      // setSteps(customStepsCopy);
-      //Append new step to DOM
       const stepsHook = document.getElementById('report__steps__hook');
       const newStep = document.createElement('li');
       newStep.classList.add("report__steps-li");
       newStep.textContent = customStep;
       stepsHook.appendChild(newStep);
       document.getElementById('add__step').value='';
-      //console.log(stepsState);
     }
 
     const stepsHandler = () => {
@@ -131,15 +108,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     useEffect( () => {
       document.querySelector('.report__steps').addEventListener('click', (event)=> {
         if (event.target.tagName === 'LI') {
-          // console.log(event.target.textContent);  
-          // console.log(stepsState);       
-          // const customStepsCopy = [...stepsState];   
-          // console.log(customStepsCopy);                 
-          // const removeIndex = customStepsCopy.indexOf(event.target.textContent);
-          // console.log('index', removeIndex);
-          // customStepsCopy.splice(removeIndex, 1);
-          // console.log(customStepsCopy);
-          // setSteps(customStepsCopy);
           event.target.parentNode.removeChild(event.target);
         } 
       })},
@@ -148,7 +116,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     useEffect(()=>{
       //Run form animations on render
       formAnimations();
-      //setSteps(form.steps);  
     },[]);
 
   return (

@@ -70,7 +70,8 @@ label {
 }
 
 .report__steps-li {
-  list-style-type: disc;
+  list-style-type: "\1f4cc";
+  margin-top: 1em;
 }
 
 /*Upload reports*/

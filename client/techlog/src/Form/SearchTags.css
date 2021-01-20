@@ -27,14 +27,12 @@
 
 .search-tag__fixed {
   display: flex;
+  align-items: baseline;
   padding: 5px;
 }
 
 .search-tag__fixed p {
   padding-right: 5px;
-}
-
-.search-tag__custom {
 }
 
 .report__search-tags__input {

@@ -75,7 +75,7 @@ const Authorised = () => {
             <Route exact path = '/new' component={NewReport}/>
             <Route exact path = '/edit' render={(props) => (<EditReport {...props} editReport={editReport}/>)}/>
             <Route exact path = '/logout' render={(props) => (<Login {...props} adminRights={adminRights}/>)}/>
-            <Redirect to="/search"/>
+            <Redirect to="/logout"/>
           </Switch>
         </div>
           <Footer/>
@@ -86,7 +86,3 @@ const Authorised = () => {
 }
 
 export default Authorised;
-
-//<Route exact path = '/search' component={SearchList} admin={admin}/>
-//<Route exact path = '/edit' component={EditReport}></Route>
-//<Route exact path = '/logout' component={Login}/>
