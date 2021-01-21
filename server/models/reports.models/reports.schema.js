@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
 
 let report = new Schema({
 
+  reportId: {
+    type: Number,
+    required: true
+  },
+  
   title: {
     type: String,
     required: true
