@@ -69,7 +69,7 @@ const SearchList = ({ admin, reportId }) => {
           reports.map((report, index) => (<SearchItem
             key={index}
             admin={admin}
-            id={report._id}
+            id={report._id} 
             title={report.title}
             tags={report.tags}
             description={report.description}
