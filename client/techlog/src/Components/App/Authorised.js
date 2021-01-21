@@ -69,7 +69,7 @@ const Authorised = () => {
             authorised={authorised}
             toggleMode={toggleMode}
             admin={admin}
-            />
+          />
           <Switch>
             <Route exact path = '/search' render={(props) => (<SearchList {...props} admin={admin} holdReportId={holdReportId}/>)}/>  
             <Route exact path = '/new' component={NewReport}/>
