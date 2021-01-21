@@ -59,6 +59,7 @@ const SearchList = ({ admin, reportId }) => {
         />)}
       </ul>
       
+
       <ul
         className="searchlist__searchitems">
         {reports.length !== 0 ?
