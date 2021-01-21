@@ -62,7 +62,7 @@ const SearchList = ({ admin, reportId }) => {
 
       <ul
         className="searchlist__searchitems">
-        {reports.length !== 0 ?
+        {reports.length !== 0 ? //! error here
         reports.map((report, index) => <SearchItem
           key={index}
           admin={admin}
