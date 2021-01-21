@@ -4,7 +4,7 @@ const { reportsConnection } = require('../connections');
 const Schema = mongoose.Schema;
 
 let report = new Schema({
-  
+
   title: {
     type: String,
     required: true
