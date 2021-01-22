@@ -1,24 +1,24 @@
 const app = require('../app.js');
 const supertest = require('supertest');
-const Report = require('../models/reports.models/reports.schema');
 
+const Report = require('../models/reports.models/reports.schema');
 const request = supertest(app); // simulates http request
 
-// const mongoose = require('mongoose')
-// const databaseName = 'test'
 
-// beforeAll(async () => {
-//   const url = `mongodb://127.0.0.1/${databaseName}`
-//   const dbConnection = await mongoose.createConnection(uri, {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //     useFindAndModify: false
-    // });
-// })
-
-// 
 
 describe('Route -> /allreports', () => {
+
+  const mocks = {
+    report: {
+      reportId: 23456234, 
+      title: 'NEWtest', 
+      description: 'my desc', 
+      tags: ['help'],
+      steps: ['do this'], 
+      images: []
+    }
+  };
+ 
 
   it('should return an array', async (done) => {
     const response = await request.get('/allreports');
@@ -29,14 +29,7 @@ describe('Route -> /allreports', () => {
 
   it('if db populated, should return an array of Reports', async (done) => {
     
-    const reportMock = await Report.create({
-      reportId: 23456234, 
-      title: 'NEWtest', 
-      description: 'my desc', 
-      tags: ['help'],
-      steps: ['do this'], 
-      images: []
-    });
+    const reportMock = await Report.create(mocks.report);
 
     const mockId = reportMock._id.toString();
 
@@ -47,8 +40,17 @@ describe('Route -> /allreports', () => {
         expect.objectContaining({_id: mockId})
       ])
     );
+    await Report.delete({_id: mockId});
     done();
   });
+
+  it('should call Report.find() once', async (done) => {
+    Report.find = jest.fn();
+    const response = await request.get('/allreports');
+    expect(Report.find).toHaveBeenCalledTimes(1);
+    done();
+  });
+ 
 });
 
 // expect(obj).toEqual(
