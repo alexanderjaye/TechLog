@@ -25,5 +25,18 @@ describe ('New Report', () => {
     fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
     expect(screen.getByText('#' + testTag)).toBeInTheDocument();
   });
+
+  it('Should remove tag when clicked on', () => {
+    const testTag = 'removableTag'
+    fireEvent.change(screen.getByLabelText('custom__tag__input'), {
+      target: { value: testTag }
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
+    const screenTag = screen.getByText('#' + testTag)
+    fireEvent.click(screenTag);
+    expect(screenTag).not.toBeInTheDocument();
+  });
+
+  
 })
 
