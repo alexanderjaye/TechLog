@@ -50,7 +50,7 @@ describe ('New Report', () => {
   });
 
   it('Should remove step from step list when clicked on', () => {
-    const testStep = 'removableStep'
+    const testStep = 'removableStep';
     fireEvent.change(screen.getByLabelText('Steps'), {
       target: { value: testStep }
     });
@@ -58,11 +58,10 @@ describe ('New Report', () => {
     fireEvent.change(screen.getByLabelText('Steps'), {
       target: { value: '' }
     });
-    const screenStep = screen.getByText(testStep)
+    const screenStep = screen.getByText(testStep);
     fireEvent.click(screenStep);
     expect(screenStep).not.toBeInTheDocument();
   });
 
 
 })
-
