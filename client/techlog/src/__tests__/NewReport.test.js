@@ -49,16 +49,19 @@ describe ('New Report', () => {
     expect(screen.getByText(testStep)).toBeInTheDocument();
   });
 
-  // it('Should remove tag when clicked on', () => {
-  //   const testTag = 'removableTag'
-  //   fireEvent.change(screen.getByLabelText('custom__tag__input'), {
-  //     target: { value: testTag }
-  //   });
-  //   fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
-  //   const screenTag = screen.getByText('#' + testTag)
-  //   fireEvent.click(screenTag);
-  //   expect(screenTag).not.toBeInTheDocument();
-  // });
+  it('Should remove step from step list when clicked on', () => {
+    const testStep = 'removableStep'
+    fireEvent.change(screen.getByLabelText('Steps'), {
+      target: { value: testStep }
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'ADD STEP'}));
+    fireEvent.change(screen.getByLabelText('Steps'), {
+      target: { value: '' }
+    });
+    const screenStep = screen.getByText(testStep)
+    fireEvent.click(screenStep);
+    expect(screenStep).not.toBeInTheDocument();
+  });
 
 
 })
