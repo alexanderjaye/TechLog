@@ -102,6 +102,7 @@ const FormSearchTags = (props) => {
         
       </ul>
       <div className="report__search-tags__input">
+        <label hidden={true} htmlFor="custom__tag__input">custom__tag__input</label>
         <input ref={tagInputRef} id="custom__tag__input" name="custom__tag" type="text"></input>
         <button onClick={customTagHandler}>ADD TAG</button>
       </div>

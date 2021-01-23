@@ -86,7 +86,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
   }
 
   const customTagHandler = (event) => {
-    console.log("tagInputRef: ",tagInputRef);
     if (tagInputRef.current.value < 1) return;
     event.preventDefault();
     if (formContent.searchTags) {

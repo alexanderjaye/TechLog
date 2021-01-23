@@ -9,11 +9,21 @@ import '@testing-library/jest-dom';
 
 describe ('New Report', () => {
 
-  it('Should render submit button on ‘new’ page', async () => {
+  beforeEach(() => {
     render(<MemoryRouter><NewReport/></MemoryRouter>);
-    // await screen.findByRole('button' { name: 'formSubmit' });
+  });
+
+  it('Should render submit button on ‘new’ page', async () => {
     expect(screen.getByRole('button', {name: 'SUBMIT'})).toBeInTheDocument();
   });
 
+  it('Should render a tag to tag list', () => {
+    const testTag = 'testTag'
+    fireEvent.change(screen.getByLabelText('custom__tag__input'), {
+      target: { value: testTag }
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
+    expect(screen.getByText('#' + testTag)).toBeInTheDocument();
+  });
 })
 
