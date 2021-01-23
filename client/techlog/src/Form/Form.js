@@ -149,7 +149,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             name="title" 
             type="text" 
             defaultValue={formContent ? formContent.title : ''}
-            value={formContent && formContent.title}
             onChange={(e) => handleFormEdit(e, 'title')}
           >
           </input>
@@ -196,10 +195,12 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             <input type="file" className="pics"></input>
       </div>}
 
-      <input className="report__submit__btn" type="submit" value="SUBMIT" onClick={formHandler} disabled={formValidator()}/>
+      <input name="formSubmit" className="report__submit__btn" type="submit" value="SUBMIT" onClick={formHandler} disabled={formValidator()}/>
 
     </form>
   )
 }
 
 export default withRouter(Form);
+
+
