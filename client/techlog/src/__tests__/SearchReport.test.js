@@ -65,7 +65,30 @@ describe('Search Reports', () => {
     
   });
 
-  
 
-  
+  it('Should remove a tag when clicked on', async () => {
+    const dummyReports = [];
+
+    jest.spyOn(window, "fetch").mockImplementation(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(dummyReports)
+      })
+    );
+
+    await act(async () => {
+      render(<MemoryRouter><SearchList/></MemoryRouter>);
+    });
+
+    const testTag = 'testTag';
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: testTag }
+    });
+    fireEvent.click(screen.getByRole('button', {name: 'ADD TAG'}));
+    const renderedTag = screen.getByText(/testTag/i);
+    fireEvent.click(renderedTag);
+    expect(renderedTag).not.toBeInTheDocument();
+    
+  });
+ 
 });
+ 
