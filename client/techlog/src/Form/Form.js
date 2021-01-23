@@ -86,7 +86,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
   }
 
   const customTagHandler = (event) => {
-    console.log("tagInputRef: ",tagInputRef);
     if (tagInputRef.current.value < 1) return;
     event.preventDefault();
     if (formContent.searchTags) {
@@ -174,7 +173,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       </div>
 
       <div className="report__steps">
-        <label>Steps</label>
+        <label htmlFor="add__step">Steps</label>
         <div className="report__steps__input">
           <input ref={stepInputRef} id="add__step" type="text"></input>
           <button onClick={addStepHandler}>ADD STEP</button>
