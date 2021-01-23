@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { screen, getByLabelText, render, fireEvent, getByRole, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SearchList from '../Components/Search/SearchList';
+import SearchBar from '../Components/Search/SearchBar';
 
 describe('Search Reports', () => {
   
@@ -42,6 +43,29 @@ describe('Search Reports', () => {
     expect(screen.getByText(dummyReports[1].title)).toBeInTheDocument();
   });
 
+  it('Should render input search tag to tag list', async () => {
+    const dummyReports = [];
+
+    jest.spyOn(global, "fetch").mockImplementation(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(dummyReports)
+      })
+    );
+
+    await act(async () => {
+      render(<MemoryRouter><SearchList/></MemoryRouter>);
+    });
+
+    const testTag = 'testTag';
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: testTag }
+    });
+    fireEvent.click(screen.getByRole('button', {name: 'ADD TAG'}));
+    expect(screen.getByText('#' + testTag)).toBeInTheDocument();
+    
+  });
+
+  
 
   
 });
