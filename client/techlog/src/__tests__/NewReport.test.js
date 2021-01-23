@@ -37,6 +37,29 @@ describe ('New Report', () => {
     expect(screenTag).not.toBeInTheDocument();
   });
 
-  
+  it('Should render a step to step list', () => {
+    const testStep = 'testStep'
+    fireEvent.change(screen.getByLabelText('Steps'), {
+      target: { value: testStep }
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'ADD STEP'}));
+    fireEvent.change(screen.getByLabelText('Steps'), {
+      target: { value: '' }
+    });
+    expect(screen.getByText(testStep)).toBeInTheDocument();
+  });
+
+  // it('Should remove tag when clicked on', () => {
+  //   const testTag = 'removableTag'
+  //   fireEvent.change(screen.getByLabelText('custom__tag__input'), {
+  //     target: { value: testTag }
+  //   });
+  //   fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
+  //   const screenTag = screen.getByText('#' + testTag)
+  //   fireEvent.click(screenTag);
+  //   expect(screenTag).not.toBeInTheDocument();
+  // });
+
+
 })
 
