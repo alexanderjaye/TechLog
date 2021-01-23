@@ -149,7 +149,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             name="title" 
             type="text" 
             defaultValue={formContent ? formContent.title : ''}
-            value={formContent && formContent.title}
             onChange={(e) => handleFormEdit(e, 'title')}
           >
           </input>
@@ -203,3 +202,5 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
 }
 
 export default withRouter(Form);
+
+
