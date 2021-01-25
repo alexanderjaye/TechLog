@@ -107,7 +107,7 @@ describe('ROUTE -> /postreport', () => {
   };
 
   let response;
-  let spyCreate
+  let spyCreate;
 
   beforeAll(async (done) => {
     spyCreate = jest.spyOn(Report, 'create');
@@ -121,7 +121,7 @@ describe('ROUTE -> /postreport', () => {
   })
 
   it('should avoid duplication by calling Report.create() once', (done) => {
-    expect(Report.create).toHaveBeenCalledTimes(1);
+    expect(spyCreate).toHaveBeenCalledTimes(1);
     done();
   });
 
@@ -140,8 +140,52 @@ describe('ROUTE -> /postreport', () => {
   });
 });
 
-// router.patch('/editreport', authMiddleware, reports.editReport);
+describe('Route -> PATCH /editreport', () => {
 
+  const mock = {
+    report: {
+      reportId: generateReportId(), 
+      title: 'This Should Be Replaced', 
+      description: 'my desc', 
+      tags: ['help'],
+      steps: ['do this'], 
+      images: []
+    }
+  };
+
+  it('should update an existing report in the db & send', async (done) => {
+    const savedReport = await Report.create(mock.report);
+    mock.report.title = 'PATCHReport_test';
+    const response = await request.patch(`/editreport`).send(mock.report);
+    expect(response.body).toEqual(savedReport);
+    expect(response.body.title).not.toEqual(mock.report.title);
+    done();
+  });
+
+  it('should call the update function once', async () => {
+
+  });
+
+  it('should not create a new report if one does not exist', async () => {
+
+  });
+});
+
+describe('Route -> DELETE /deletereport/:id', () => {
+
+  it('should delete an existing report in the db', () => {
+
+  });
+
+  it('should call the delete function once ONLY', () => {
+
+  });
+
+  it('should not delete a report with a different id to parameter', () => {
+
+  });
+
+});
 // router.delete('/deletereport/:id', authMiddleware, reports.deleteReport);
 
 

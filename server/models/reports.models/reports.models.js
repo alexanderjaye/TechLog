@@ -28,12 +28,13 @@ const newReport = async (title, description, tags, steps, images) => {
     existingReportId = await Reports.findOne({reportId}); // check unique
     if (!existingReportId) isUnique = true;
   }
-  return Reports.create({reportId, title, description, tags, steps, images});
+  const createdReport = Reports.create({reportId, title, description, tags, steps, images});
+  return createdReport;
 }
 
-
-const editReport = (id, title, description, tags, steps, comments) => {
-  const reply = Reports.findByIdAndUpdate(id, {title, description, tags, steps, comments});
+//TODO sort out _id and reportID
+const editReport = (_id, reportId, title, description, tags, steps) => {
+  const reply = Reports.findByIdAndUpdate(_id, {title, reportId, description, tags, steps });
   return reply;
 }
 
