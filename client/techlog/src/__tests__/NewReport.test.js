@@ -16,26 +16,6 @@ describe ('New Report', () => {
     expect(screen.getByRole('button', {name: 'SUBMIT'})).toBeInTheDocument();
   });
 
-  it('Should render a tag to tag list', () => {
-    const testTag = 'testTag'
-    fireEvent.change(screen.getByLabelText('custom__tag__input'), {
-      target: { value: testTag }
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
-    expect(screen.getByText('#' + testTag)).toBeInTheDocument();
-  });
-
-  it('Should remove tag when clicked on', () => {
-    const testTag = 'removableTag'
-    fireEvent.change(screen.getByLabelText('custom__tag__input'), {
-      target: { value: testTag }
-    });
-    fireEvent.click(screen.getByRole('button', { name: 'ADD TAG'}));
-    const screenTag = screen.getByText('#' + testTag)
-    fireEvent.click(screenTag);
-    expect(screenTag).not.toBeInTheDocument();
-  });
-
   it('Should render a step to step list', () => {
     const testStep = 'testStep'
     fireEvent.change(screen.getByLabelText('Steps'), {
