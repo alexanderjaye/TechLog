@@ -10,29 +10,27 @@ const getReport = (reportId) => {
   return reply;
 }
 
-const newReport = async (title, description, tags, steps, images) => {
-  
-  const reportId = generateReportId(); // new reportID
-  let isUnique = false;
-  let existingReportId = [];
-  while (!isUnique) {
-    existingReportId = await Reports.find({reportId}); // check unique
-    if (existingReportId.length === 0) isUnique = true;
-  }
-  const reply = Reports.create({reportId, title, description, tags, steps, images});
-
-  return reply;
-}
-
-/** 1 round = 4 random base32 characters */
-function generateReportId(rounds = 1) {
+const generateReportId = (rounds = 1) => {
   let uid = '';
   while (rounds > 0) {
     uid += Math.random().toString(10).substring(2, 10);
     rounds -= 1;
   }
   return +uid;
+};
+
+const newReport = async (title, description, tags, steps, images) => {
+  
+  const reportId = generateReportId(); // new reportID
+  let isUnique = false;
+  let existingReportId = [];
+  while (!isUnique) {
+    existingReportId = await Reports.findOne({reportId}); // check unique
+    if (!existingReportId) isUnique = true;
+  }
+  return Reports.create({reportId, title, description, tags, steps, images});
 }
+
 
 const editReport = (id, title, description, tags, steps, comments) => {
   const reply = Reports.findByIdAndUpdate(id, {title, description, tags, steps, comments});
@@ -49,5 +47,6 @@ module.exports = {
   getReport,
   newReport,
   editReport,
-  deleteReport
+  deleteReport,
+  generateReportId
 }

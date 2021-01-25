@@ -2,16 +2,18 @@ const app = require('../app.js');
 const supertest = require('supertest');
 
 const Report = require('../models/reports.models/reports.schema');
+const { generateReportId } = require('../models/reports.models/reports.models');
+
 const request = supertest(app); // simulates http request
 
-/**
- * GET -> /allreports 
-*/
+//============REPORTS ROUTES==============
+
+// GET /allreports
 describe('Route -> /allreports', () => {
 
   const mocks = {
     report: {
-      reportId: 23456234, 
+      reportId: generateReportId(), 
       title: 'NEWtest', 
       description: 'my desc', 
       tags: ['help'],
@@ -46,19 +48,20 @@ describe('Route -> /allreports', () => {
   });
 
   it('should call Report.find() once', async (done) => {
-    Report.find = jest.fn();
-    const response = await request.get('/allreports');
-    expect(Report.find).toHaveBeenCalledTimes(1);
+    const findSpy = jest.spyOn(Report, 'find')
+    await request.get('/allreports');
+    expect(findSpy).toHaveBeenCalledTimes(1);
     done();
   });
  
 });
 
+//get
 describe('Route -> /getreport/:id', () => {
 
   const mock = {
     report: {
-      reportId: 48489356, 
+      reportId: generateReportId(), 
       title: 'NEWtest', 
       description: 'my desc', 
       tags: ['help'],
@@ -70,28 +73,72 @@ describe('Route -> /getreport/:id', () => {
   
   it('should return a report that exists in the db', async (done) => {
     const newReportMock = await Report.create(mock.report);
-    const response = await request.get(`/getReport/${mock.reportId}`);
+    const response = await request.get(`/getreport/${mock.report.reportId}`);
     expect(response.status).toBe(200);
     expect(response.body._id).toEqual(newReportMock._id.toString());
     done();
   });
 
   it('should return a single report', async (done) => {
-    const response = await request.get(`/getReport/${mock.reportId}`);
+    const response = await request.get(`/getreport/${mock.report.reportId}`);
     expect(Array.isArray(response.body)).toBe(false);
+    done();
   });
 
   it('should call Report.findOne once', async (done) => {
-    Report.findOne = jest.fn();
-    const response = await request.get(`/getReport/${mock.reportId}`);
-    expect(Report.findOne).toHaveBeenCalledTimes(1);
+    const spyFindOne = jest.spyOn(Report, 'findOne');
+    await request.get(`/getreport/${mock.report.reportId}`);
+    expect(spyFindOne).toHaveBeenCalledTimes(1);
+    done();
 
   });
 });
 
-// describe('ROUTE -> /postreport', )
+describe('ROUTE -> /postreport', () => {
 
-// router.post('/postreport', reports.newReport);
+  const mock = {
+    report: {
+      title: 'PostReport_Test', 
+      description: 'test', 
+      tags: ['test'],
+      steps: ['test'], 
+      images: []
+    }
+  };
+
+  let response;
+  let spyCreate
+
+  beforeAll(async (done) => {
+    spyCreate = jest.spyOn(Report, 'create');
+    response = await request.post(`/postreport`).send(mock.report);
+    done();
+  });
+
+  afterAll(async (done) => {
+    await Report.deleteOne({ _id: response._id});
+    done();
+  })
+
+  it('should avoid duplication by calling Report.create() once', (done) => {
+    expect(Report.create).toHaveBeenCalledTimes(1);
+    done();
+  });
+
+  it('should return the saved report in the response body', (done) => {
+    expect(response.status).toBe(201);
+    expect(mock.report.reportId).toEqual(response.reportId);
+    done();
+  });
+
+  it('should store the request body in the db', async (done) => {
+    const searchResult = await Report.find({ reportId: response.reportId});
+    console.log('search', searchResult);
+    
+    expect(searchResult.reportId).toEqual(searchResult.reportId);
+    done();
+  });
+});
 
 // router.patch('/editreport', authMiddleware, reports.editReport);
 

@@ -24,7 +24,6 @@ const getReport = async (req, res) => {
 const newReport = async (req, res) => {
   try {
     const { title, description, tags, steps, images } = req.body;
-    console.log('controller', images);
     const reply = await reports.newReport(title, description, tags, steps, images);
     res.status(201).send(reply);
   } catch (err) {
