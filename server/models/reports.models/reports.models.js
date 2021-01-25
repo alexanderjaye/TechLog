@@ -6,7 +6,7 @@ const allReports = () => {
 }
 
 const getReport = (reportId) => {
-  const reply = Reports.find({ reportId });
+  const reply = Reports.findOne({ reportId });
   return reply;
 }
 
