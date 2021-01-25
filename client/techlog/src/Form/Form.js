@@ -142,7 +142,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     <form className="form__container" spellCheck="false" ref={formRef}>
 
       <div className="report__title">
-          <label>Report Title</label>
+          <label htmlFor="report__title__input">Report Title</label>
           <input 
             id="report__title__input" 
             name="title" 
@@ -162,7 +162,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       />
 
       <div className="report__description">
-        <label>Description</label>
+        <label htmlFor="report__description__input">Description</label>
         <textarea 
           id="report__description__input" 
           rows="10" 

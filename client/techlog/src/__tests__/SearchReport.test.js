@@ -6,6 +6,11 @@ import SearchList from '../Components/Search/SearchList';
 import mockReports from '../test_mocks/mockReports'
 
 describe('Search Reports', () => {
+
+  //* trying to clone data afresh before each
+  // beforeEach(() => {
+  //   let mockReports = mockReports.map(el => JSON.parse(JSON.stringify(el)))
+  // })
   
   it('should render dummy data to item list', async () => {
     
