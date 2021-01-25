@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 
 describe('Form input', () => {
   
-  it('Should update state when text is input', () => {
+  it('Should pesist input text when element not in focus', () => {
     render(<MemoryRouter><Form /></MemoryRouter>);
     const titleInput = screen.getByLabelText(/report title/i);
     const descriptionInput = screen.getByLabelText(/description/i);
@@ -16,10 +16,11 @@ describe('Form input', () => {
     // click away
     fireEvent.click(descriptionInput);
     // check text has persisted
-    expect(screen.getByText('banana')).toBeInTheDocument();
-
-    
-
+    expect(titleInput.value).toBe('banana');
+    // check again with description box
+    fireEvent.change(descriptionInput, {target: {value: 'apple'}});
+    fireEvent.click(titleInput);
+    expect(descriptionInput.value).toBe('apple');
   })
 
   // it('Should submit when button pressed', () => {
