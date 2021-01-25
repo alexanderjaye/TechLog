@@ -33,13 +33,13 @@ const newReport = async (title, description, tags, steps, images) => {
 }
 
 //TODO sort out _id and reportID
-const editReport = (_id, reportId, title, description, tags, steps) => {
-  const reply = Reports.findByIdAndUpdate(_id, {title, reportId, description, tags, steps });
+const editReport = (_id, title, description, tags, steps) => {
+  const reply = Reports.findByIdAndUpdate(_id, { title, description, tags, steps });
   return reply;
 }
 
 const deleteReport = (id) => {
-  const reply = Reports.findByIdAndDelete({_id:id})
+  const reply = Reports.findByIdAndDelete({ _id: id })
   return reply;
 }
 
@@ -50,4 +50,4 @@ module.exports = {
   editReport,
   deleteReport,
   generateReportId
-}
+};
