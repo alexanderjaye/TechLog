@@ -10,6 +10,15 @@ const getReport = (reportId) => {
   return reply;
 }
 
+const generateReportId = (rounds = 1) => {
+  let uid = '';
+  while (rounds > 0) {
+    uid += Math.random().toString(10).substring(2, 10);
+    rounds -= 1;
+  }
+  return +uid;
+};
+
 const newReport = async (title, description, tags, steps, images) => {
   
   const reportId = generateReportId(); // new reportID
@@ -25,14 +34,6 @@ const newReport = async (title, description, tags, steps, images) => {
 }
 
 /** 1 round = 4 random base32 characters */
-function generateReportId(rounds = 1) {
-  let uid = '';
-  while (rounds > 0) {
-    uid += Math.random().toString(10).substring(2, 10);
-    rounds -= 1;
-  }
-  return +uid;
-}
 
 const editReport = (id, title, description, tags, steps, comments) => {
   const reply = Reports.findByIdAndUpdate(id, {title, description, tags, steps, comments});
@@ -49,5 +50,6 @@ module.exports = {
   getReport,
   newReport,
   editReport,
-  deleteReport
+  deleteReport,
+  generateReportId
 }
