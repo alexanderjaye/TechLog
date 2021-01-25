@@ -14,9 +14,9 @@ describe('Loggout page', () => {
   });
   
   it('Should navigate to loggin page when clicking "Logout"', () => {
-    const logoutButton = screen.getByText('Logout');
+    const logoutButton = screen.getByText(/log ?out/i);
     fireEvent.click(logoutButton)
-    expect(screen.getByText('log in', {exact: false})).toBeInTheDocument;
+    expect(screen.getByText(/log ?in/i)).toBeInTheDocument;
     
   })
 
