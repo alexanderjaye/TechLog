@@ -53,23 +53,16 @@ describe('Route -> /allreports', () => {
  
 });
 
-// expect(obj).toEqual(
-//   expect.objectContaining({
-//     id: '111',
-//     productName: 'Jest Handbook'
-//   })
-// );
-// describe('Route -> postreport', () => {
-  
-//   // const testReport = new Report()
+describe('Route -> /getreport/:id', () => {
 
-//   // it('should save a report to the database', async (done) => {
+  it('should return a single report', async () => {
     
-//   // });
-// });
+  });
 
-
-// router.get('/allreports', reports.allReports);
+  it('should return a report that exists in the db', () => {
+    
+  });
+});
 
 // router.get('/getreport/:id', reports.getReport);
 
