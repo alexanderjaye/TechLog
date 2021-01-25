@@ -8,7 +8,7 @@ import SearchBar from '../Components/Search/SearchBar';
 describe('Search Reports', () => {
   
   it('should render dummy data to item list', async () => {
-    const dummyReports = [
+    const dummyReports = [ 
       {
         title: 'Report 1',
         description: 'test test test',
@@ -89,6 +89,55 @@ describe('Search Reports', () => {
     expect(renderedTag).not.toBeInTheDocument();
     
   });
+
+  it ('Should filter out the displayed search items by tag', async () => {
+    // display 2 search items, one with tag
+    const dummyReports = [ 
+      {
+        title: 'apple',
+        description: 'test',
+        tags: ['tag1'],
+        steps: ['step1'],
+        images: [],
+        reportId: 12345678,
+        _id: '2345'
+      },
+      {
+        title: 'banana',
+        description: 'test',
+        tags: ['tag2'],
+        steps: ['step2'],
+        images: [],
+        reportId: 12345679,
+        _id: '2346'
+      },
+    ];
+    
+    jest.spyOn(global, "fetch").mockImplementation(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(dummyReports)
+      })
+    );
+
+    await act(async () => {
+      render(<MemoryRouter><SearchList/></MemoryRouter>);
+    });
+    // check if both on page
+    const reportTitle1 = screen.getByText('apple');
+    const reportTitle2 = screen.getByText('banana');
+    expect(reportTitle1).toBeInTheDocument();
+    expect(reportTitle2).toBeInTheDocument();
+    // put in a search tag
+    const searchTag = 'tag1';
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: searchTag }
+    });
+    fireEvent.click(screen.getByRole('button', {name: 'ADD TAG'}));
+    // check tagged one on page
+    expect(reportTitle1).toBeInTheDocument();
+    // check non-tagged one not on page
+    expect(reportTitle2).not.toBeInTheDocument();
+  })
  
 });
  
