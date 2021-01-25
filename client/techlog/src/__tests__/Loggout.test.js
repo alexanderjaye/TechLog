@@ -28,8 +28,22 @@ describe('Loggout page', () => {
     expect(searchLink).not.toBeInTheDocument;
   })
 
-  // it('Should return to search page when logging in as User or Admin', () => {
-    
-  // })
+  it('Should return to search page when logging in as User', () => {
+    const logoutButton = screen.getByText(/log ?out/i);
+    fireEvent.click(logoutButton)
+    const userButton = screen.getByText(/user/i);
+    fireEvent.click(userButton)
+    expect(screen.getByText(/search/i)).toBeInTheDocument;
+    expect(screen.getByText(/add tag/i)).toBeInTheDocument;
+  })
+
+  it('Should return to search page when logging in as Admin', () => {
+    const logoutButton = screen.getByText(/log ?out/i);
+    fireEvent.click(logoutButton)
+    const userButton = screen.getByText(/admin/i);
+    fireEvent.click(userButton)
+    expect(screen.getByText(/search/i)).toBeInTheDocument;
+    expect(screen.getByText(/add tag/i)).toBeInTheDocument;
+  })
 
 })
