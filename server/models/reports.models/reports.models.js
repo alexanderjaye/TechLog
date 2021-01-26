@@ -25,23 +25,21 @@ const newReport = async (title, description, tags, steps, images) => {
   let isUnique = false;
   let existingReportId = [];
   while (!isUnique) {
-    existingReportId = await Reports.find({reportId}); // check unique
-    if (existingReportId.length === 0) isUnique = true;
+    existingReportId = await Reports.findOne({reportId}); // check unique
+    if (!existingReportId) isUnique = true;
   }
-  const reply = Reports.create({reportId, title, description, tags, steps, images});
-
-  return reply;
+  const createdReport = Reports.create({reportId, title, description, tags, steps, images});
+  return createdReport;
 }
 
-/** 1 round = 4 random base32 characters */
-
-const editReport = (id, title, description, tags, steps, comments) => {
-  const reply = Reports.findByIdAndUpdate(id, {title, description, tags, steps, comments});
+//TODO sort out _id and reportID
+const editReport = (_id, title, description, tags, steps) => {
+  const reply = Reports.findByIdAndUpdate(_id, { title, description, tags, steps });
   return reply;
 }
 
 const deleteReport = (id) => {
-  const reply = Reports.findByIdAndDelete({_id:id})
+  const reply = Reports.findByIdAndDelete({ _id: id })
   return reply;
 }
 
@@ -52,4 +50,4 @@ module.exports = {
   editReport,
   deleteReport,
   generateReportId
-}
+};
