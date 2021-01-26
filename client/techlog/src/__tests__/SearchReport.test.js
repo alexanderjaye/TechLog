@@ -3,35 +3,20 @@ import { MemoryRouter } from 'react-router-dom';
 import { screen, getByLabelText, render, fireEvent, getByRole, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SearchList from '../Components/Search/SearchList';
-import SearchBar from '../Components/Search/SearchBar';
+import mockReports from '../test_mocks/mockReports'
 
 describe('Search Reports', () => {
+
+  //* trying to clone data afresh before each
+  // beforeEach(() => {
+  //   let mockReports = mockReports.map(el => JSON.parse(JSON.stringify(el)))
+  // })
   
   it('should render dummy data to item list', async () => {
-    const dummyReports = [ 
-      {
-        title: 'Report 1',
-        description: 'test test test',
-        tags: ['tag1', 'tag2'],
-        steps: ['step1', 'step2'],
-        images: [],
-        reportId: 12345678,
-        _id: '2345'
-      },
-      {
-        title: 'Report 2',
-        description: 'test test test',
-        tags: ['tag3', 'tag4'],
-        steps: ['step3', 'step4'],
-        images: [],
-        reportId: 12345679,
-        _id: '2346'
-      },
-    ];
     
     jest.spyOn(global, "fetch").mockImplementation(() =>
       Promise.resolve({
-        json: () => Promise.resolve(dummyReports)
+        json: () => Promise.resolve(mockReports)
       })
     );
 
@@ -39,16 +24,16 @@ describe('Search Reports', () => {
       render(<MemoryRouter><SearchList/></MemoryRouter>);
     });
 
-    expect(screen.getByText(dummyReports[0].title)).toBeInTheDocument();
-    expect(screen.getByText(dummyReports[1].title)).toBeInTheDocument();
+    expect(screen.getByText(mockReports[0].title)).toBeInTheDocument();
+    expect(screen.getByText(mockReports[1].title)).toBeInTheDocument();
   });
 
   it('Should render input search tag to tag list', async () => {
-    const dummyReports = [];
+    const emptyReports = [];
 
     jest.spyOn(global, "fetch").mockImplementation(() =>
       Promise.resolve({
-        json: () => Promise.resolve(dummyReports)
+        json: () => Promise.resolve(emptyReports)
       })
     );
 
@@ -67,11 +52,10 @@ describe('Search Reports', () => {
 
 
   it('Should remove a tag when clicked on', async () => {
-    const dummyReports = [];
 
     jest.spyOn(window, "fetch").mockImplementation(() =>
       Promise.resolve({
-        json: () => Promise.resolve(dummyReports)
+        json: () => Promise.resolve(mockReports)
       })
     );
 
@@ -91,31 +75,10 @@ describe('Search Reports', () => {
   });
 
   it ('Should filter out the displayed search items by tag', async () => {
-    // display 2 search items, one with tag
-    const dummyReports = [ 
-      {
-        title: 'apple',
-        description: 'test',
-        tags: ['tag1'],
-        steps: ['step1'],
-        images: [],
-        reportId: 12345678,
-        _id: '2345'
-      },
-      {
-        title: 'banana',
-        description: 'test',
-        tags: ['tag2'],
-        steps: ['step2'],
-        images: [],
-        reportId: 12345679,
-        _id: '2346'
-      },
-    ];
     
     jest.spyOn(global, "fetch").mockImplementation(() =>
       Promise.resolve({
-        json: () => Promise.resolve(dummyReports)
+        json: () => Promise.resolve(mockReports)
       })
     );
 
@@ -123,8 +86,8 @@ describe('Search Reports', () => {
       render(<MemoryRouter><SearchList/></MemoryRouter>);
     });
     // check if both on page
-    const reportTitle1 = screen.getByText('apple');
-    const reportTitle2 = screen.getByText('banana');
+    const reportTitle1 = screen.getByText('First Report');
+    const reportTitle2 = screen.getByText('Second Report');
     expect(reportTitle1).toBeInTheDocument();
     expect(reportTitle2).toBeInTheDocument();
     // put in a search tag

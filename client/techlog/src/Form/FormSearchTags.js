@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import './FormSearchTags.css'
 
+
 const FormSearchTags = (props) => {
   const {form, customTagHandler, handleSearchTagClick, handlePresetTagClick, tagInputRef} = props;
   //Event listener to remove tags

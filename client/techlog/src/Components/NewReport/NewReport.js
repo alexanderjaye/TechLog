@@ -12,10 +12,11 @@ const NewReport = () => {
     const filterPics = [...pics].filter(pic => pic.files.length !== 0);
     console.log(title, searchTags, description, steps, pics);
     await rest.postReport(title, searchTags, description, steps, filterPics);
+    // * move to form component?
   }
 
   return (
-    <div className="new__report__container">
+    <div data-testid="newReport" className="new__report__container">
       <Form
         formSubmit={formSubmit}
       />
