@@ -1,6 +1,8 @@
-const reports = require('../models/reports.models/reports.models');
 
-const allReports = async (req, res) => {
+import * as reports from '../models/reports.models/reports.models';
+import { Request, Response, NextFunction } from 'express';
+
+export const allReports = async (req: Request, res: Response): Promise<void> => {
   try {
     const reply = await reports.allReports();
     res.status(200).send(reply);
@@ -10,7 +12,7 @@ const allReports = async (req, res) => {
   }
 }
 
-const getReport = async (req, res) => {
+export const getReport = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const reply = await reports.getReport(id);
@@ -21,7 +23,7 @@ const getReport = async (req, res) => {
   }
 }
 
-const newReport = async (req, res) => {
+export const newReport = async (req: Request, res: Response) => {
   try {
     const { title, description, tags, steps, images } = req.body;
     const reply = await reports.newReport(title, description, tags, steps, images);
@@ -32,7 +34,7 @@ const newReport = async (req, res) => {
   }
 }
 
-const editReport = async (req, res) => {
+export const editReport = async (req: Request, res: Response) => {
   try {
     const { _id, title, description, tags, steps } = req.body;
     const reply = await reports.editReport(_id, title, description, tags, steps);
@@ -43,7 +45,7 @@ const editReport = async (req, res) => {
   }
 }
 
-const deleteReport = async (req, res) => {
+export const deleteReport = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const reply = await reports.deleteReport(id);
@@ -52,12 +54,4 @@ const deleteReport = async (req, res) => {
     console.log('Delete report error', err);
     res.status(500).send('Delete report error');
   }
-}
-
-module.exports = {
-  allReports,
-  getReport,
-  newReport,
-  editReport,
-  deleteReport
 }
