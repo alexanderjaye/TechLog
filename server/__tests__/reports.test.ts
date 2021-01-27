@@ -1,11 +1,10 @@
 // Internal Modules
-const app = require('../app.js');
-const Report = require('../models/reports.models/reports.schema');
+import app from '../app';
+import {reportModel as Report} from '../models/reports.models/reports.schema'
 // Mock Data 
-const { MockReport } = require('./__mocks__/reports.mocks');
-// Package Dependencies
-const supertest = require('supertest');
-const mongoose = require('mongoose');
+import { MockReport, ReportSchema} from './__mocks__/reports.mocks'; // Package Dependencies
+import * as supertest from 'supertest';
+import * as mongoose from 'mongoose';
 
 const request = supertest(app); // simulates http request
 
@@ -134,8 +133,8 @@ describe('===REPORTS ROUTES===', () => {
     });
 
     it('should store the request body in the db', async (done) => {
-      const searchResult = await Report.findOne({ reportId: response.body.reportId});      
-      expect(response.body.title).toEqual(searchResult.title);
+      const searchResult = await Report.findOne({ reportId: response.body.reportId});
+      expect(response.body.title).toEqual(searchResult!.title);
       done();
     });
   });
@@ -170,7 +169,7 @@ describe('===REPORTS ROUTES===', () => {
     it('should update an existing report in the db & send', async (done) => {
       expect(response.body._id).toEqual(mockReport._id);
       const updateSearch = await Report.findOne({ _id: response.body._id});
-      expect(updateSearch.title).toBe(mockReport.title);
+      expect(updateSearch!.title).toBe(mockReport.title);
       done();
     });
 
@@ -259,8 +258,8 @@ describe('===REPORTS ROUTES===', () => {
       const deletedResponse = await request.delete(`${routes.reports}/${updateResponse.body._id}`);
       expect(getSingleResponse.body).toEqual(deletedResponse.body);
 
-      const search = Report.findOne({ _id: postResponse.body._id});
-      expect(search.title).toBe(undefined);
+      const search = await Report.findOne({ _id: postResponse.body._id});
+      expect(search).toBe(null);
       done();
     });
   });

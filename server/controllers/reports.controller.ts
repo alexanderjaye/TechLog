@@ -1,6 +1,9 @@
-const reports = require('../models/reports.models/reports.models');
 
-const allReports = async (req, res) => {
+import * as reports from '../models/reports.models/reports.models';
+import { Request, Response, NextFunction } from 'express';
+import { report } from 'process';
+
+export const allReports = async (req: Request, res: Response): Promise<void> => {
   try {
     const reply = await reports.allReports();
     res.status(200).send(reply);
@@ -8,20 +11,21 @@ const allReports = async (req, res) => {
     console.log('Return all reports error', err);
     res.status(500).send('Return all reports error');
   }
-}
+};
 
-const getReport = async (req, res) => {
+export const getReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const reply = await reports.getReport(id);
+    const reportId: number = Number(id);
+    const reply = await reports.getReport(reportId);
     res.status(200).send(reply);
   } catch (err) {
     console.log('Return single report error', err);
     res.status(500).send('Return single report error');
   }
-}
+};
 
-const newReport = async (req, res) => {
+export const newReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { title, description, tags, steps, images } = req.body;
     const reply = await reports.newReport(title, description, tags, steps, images);
@@ -30,9 +34,9 @@ const newReport = async (req, res) => {
     console.log('Create new report error', err);
     res.status(500).send('Create new report error');
   }
-}
+};
 
-const editReport = async (req, res) => {
+export const editReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { _id, title, description, tags, steps } = req.body;
     const reply = await reports.editReport(_id, title, description, tags, steps);
@@ -41,9 +45,9 @@ const editReport = async (req, res) => {
     console.log('Edit report error', err);
     res.status(500).send('Edit report error');
   }
-}
+};
 
-const deleteReport = async (req, res) => {
+export const deleteReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const reply = await reports.deleteReport(id);
@@ -52,12 +56,4 @@ const deleteReport = async (req, res) => {
     console.log('Delete report error', err);
     res.status(500).send('Delete report error');
   }
-}
-
-module.exports = {
-  allReports,
-  getReport,
-  newReport,
-  editReport,
-  deleteReport
-}
+};
