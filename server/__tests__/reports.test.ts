@@ -23,7 +23,7 @@ describe('===REPORTS ROUTES===', () => {
 
   describe('Route -> GET /reports (all)', () => {
   
-    let mockReport;
+    let mockReport: MockReport;
     let createdReport;
     let findSpy;
     let response;
