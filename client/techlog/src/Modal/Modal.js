@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 
 import './Modal.css';
 
@@ -8,6 +8,12 @@ import Image from './Image';
 
 const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
   const { _id, tags, title, images, description, steps, reportId } = report;
+
+  const closeButtonRef = useRef();
+
+  useEffect(() => {
+    closeButtonRef.current.focus()
+  }, []);
 
   const deleteReport = () => {
     rest.deleteReport(_id);
@@ -62,7 +68,7 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
           </div> : null}
 
         <div className="modal__buttons">
-          <button id="close" onClick={closeModal}>CLOSE</button>
+          <button ref={closeButtonRef} id="close" onClick={closeModal}>CLOSE</button>
           {admin &&
             <button id="delete" onClick={deleteReport}>DELETE</button>
           }
