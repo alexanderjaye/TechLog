@@ -52,8 +52,9 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
 
     //Check what route currently on - if new, formSubmit, and if edit, formPatch
     const { title, searchTags, tags, description, steps, pics } = formContent;
-    const collectedTags = [...searchTags, ...tags]
-    console.log('collectedTags', collectedTags);
+    let collectedTags = []
+    if (searchTags) collectedTags = [...searchTags];
+    if (tags) collectedTags = [...collectedTags, ...tags];
     if (location.pathname === '/new') await formSubmit(title, collectedTags, description, steps, pics);
     else if (location.pathname === '/edit') await formPatch(title, collectedTags, description, steps);
     

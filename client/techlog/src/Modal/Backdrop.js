@@ -8,7 +8,7 @@ import Modal from './Modal';
 const Backdrop = ({admin, report, holdReportId, toggleModal, callReports}) => { 
 
   return createPortal (
-    <div className="backdrop__container" onClick={toggleModal}>
+    <div className="backdrop__container">
       <Modal 
         admin={admin} 
         report={report}
