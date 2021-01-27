@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './FormSearchTags.css'
 
 
 const FormSearchTags = (props) => {
   const {form, customTagHandler, handleSearchTagClick, handlePresetTagClick, tagInputRef} = props;
-  //Event listener to remove tags
-  // useEffect(() => {
-  //   //TODO remove tag onclick
-  //   // document.querySelector('.report__search-tags').addEventListener('click', (event) => {
-  //   //   if (event.target.tagName === 'LI') event.target.parentNode.removeChild(event.target);
-  //   })},
-  // ,[]);
-
+  
   return(
     <div className="report__search-tags">
     {form &&

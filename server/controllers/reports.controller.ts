@@ -17,7 +17,9 @@ export const getReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const reportId: number = Number(id);
+    console.log('GET - IN reportID', reportId)
     const reply = await reports.getReport(reportId);
+    console.log(reply);
     res.status(200).send(reply);
   } catch (err) {
     console.log('Return single report error', err);

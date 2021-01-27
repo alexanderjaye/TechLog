@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './EditReport.css';
 
@@ -11,11 +11,15 @@ const EditReport = ({editReport}) => {
 
   const [formEditState, setFormEditState] = useState(null);
 
+  // async await?
   const formFetch = async (reportId) => {
     const report = await rest.getReport(reportId);
-    setFormEditState(report);
+    console.log("formEditState: ",formEditState);
+    setFormEditState([report]);
   }
-
+  // useEffect(() => {
+  // }, [formEditState])
+  
   const formPatch = (title, searchTags, description, steps) => {
     const { _id } = formEditState[0];
     const formCopy = { _id, title, tags:searchTags, description, steps}

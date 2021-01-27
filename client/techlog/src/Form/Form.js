@@ -36,13 +36,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     return !formContent.title || !formContent.description || !formContent.steps
   };
 
-  
-  // window.on("keydown", function(e){
-  // if(e.keyCode === 13) {
-  //     e.preventDefault();
-  // }
-  
-
   const handleFormEdit = (event, formElement) => {
     if (event.target.value.length < 1) return;
     setFormContent({
