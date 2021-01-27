@@ -11,14 +11,10 @@ const EditReport = ({editReport}) => {
 
   const [formEditState, setFormEditState] = useState(null);
 
-  // async await?
   const formFetch = async (reportId) => {
     const report = await rest.getReport(reportId);
-    console.log("formEditState: ",formEditState);
     setFormEditState([report]);
   }
-  // useEffect(() => {
-  // }, [formEditState])
   
   const formPatch = (title, searchTags, description, steps) => {
     const { _id } = formEditState[0];

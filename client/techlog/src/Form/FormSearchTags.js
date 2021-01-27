@@ -4,7 +4,14 @@ import './FormSearchTags.css'
 
 
 const FormSearchTags = (props) => {
-  const {form, customTagHandler, handleSearchTagClick, handlePresetTagClick, tagInputRef} = props;
+  const { 
+    form, 
+    customTagHandler, 
+    handleSearchTagClick, 
+    handlePresetTagClick, 
+    tagInputRef, 
+    handleCheckboxTag, 
+  } = props;
   
   return(
     <div className="report__search-tags">
@@ -19,15 +26,30 @@ const FormSearchTags = (props) => {
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
             <p>Kystdesign</p>
-            <input type="checkbox" className="search-tag__checkbox" value="kyst"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="kyst"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Schilling Robotics</p>
-            <input type="checkbox" className="search-tag__checkbox" value="schilling"/>
+            <input
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="schilling"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Reach</p>
-            <input type="checkbox" className="search-tag__checkbox" value="reach"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="reach"
+              onChange={handleCheckboxTag}
+            />
           </div>
         </div>
           
@@ -36,19 +58,39 @@ const FormSearchTags = (props) => {
         <div className="search-tag__fixed__section">
           <div className="search-tag__fixed">
             <p>ROV</p>
-            <input type="checkbox" className="search-tag__checkbox" value="ROV"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="ROV"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>TMS</p>
-            <input type="checkbox" className="search-tag__checkbox" valu="TMS"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="TMS"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Winch</p>
-            <input type="checkbox" className="search-tag__checkbox" value="winch"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="winch"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Sensor</p>
-            <input type="checkbox" className="search-tag__checkbox" value="sensor"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="sensor"
+              onChange={handleCheckboxTag}
+            />
           </div>
         </div>
 
@@ -57,23 +99,48 @@ const FormSearchTags = (props) => {
         <div className="search-tag__fixed__section">
         <div className="search-tag__fixed">
             <p>Manipulator</p>
-            <input type="checkbox" className="search-tag__checkbox" value="manipulator"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="manipulator"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Gyro</p>
-            <input type="checkbox" className="search-tag__checkbox" value="gyro"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="gyro"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Altimeter</p>
-            <input type="checkbox" className="search-tag__checkbox" value="altimeter"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="altimeter"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Motor</p>
-            <input type="checkbox" className="search-tag__checkbox" value="motor"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="motor"
+              onChange={handleCheckboxTag}
+            />
           </div>
           <div className="search-tag__fixed">
             <p>Pump</p>
-            <input type="checkbox" className="search-tag__checkbox" value="pump"/>
+            <input 
+              type="checkbox" 
+              className="search-tag__checkbox" 
+              value="pump"
+              onChange={handleCheckboxTag}
+            />
           </div>
         </div>
 

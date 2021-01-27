@@ -31,11 +31,8 @@ const getReports = async () => {
 
 const getReport = async (id) => {
 
-  console.log('GET rest.getReport.Id', id);
   const getURL =  `${BASE_URL}reports/${id}`;
-  console.log('GET URL', getURL);
   const response = await fetch(getURL);
-  console.log('GET RESPONSE', response);
   return await response.json();
 }
 

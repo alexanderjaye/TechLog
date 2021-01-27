@@ -6,7 +6,6 @@ const GetForm = ({ editReport, formFetch }) => {
   const [localReportId, setLocalReportId] = useState('')
 
   const getReport = () => {
-    console.log("localReportId: ",localReportId);
     formFetch(localReportId);
     setLocalReportId('');
   }
