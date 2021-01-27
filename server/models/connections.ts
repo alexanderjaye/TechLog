@@ -11,8 +11,8 @@ function makeNewConnection(uri: string, dbName: string): any {
     return db;
 }
 
-const mongoURL = process.env.MONGO_URL || '127.0.0.1:27017';
-const reportsCollection = process.env.MONGO_REPORTS || 'reports';
+const mongoURL: string = process.env.MONGO_URL || '127.0.0.1:27017';
+const reportsCollection: string = process.env.MONGO_REPORTS || 'reports';
 
 
 export const reportsConnection = makeNewConnection(`mongodb://${mongoURL}/${reportsCollection}`, 'reportsDB');

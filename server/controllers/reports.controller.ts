@@ -1,6 +1,7 @@
 
 import * as reports from '../models/reports.models/reports.models';
 import { Request, Response, NextFunction } from 'express';
+import { report } from 'process';
 
 export const allReports = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -10,20 +11,21 @@ export const allReports = async (req: Request, res: Response): Promise<void> => 
     console.log('Return all reports error', err);
     res.status(500).send('Return all reports error');
   }
-}
+};
 
-export const getReport = async (req: Request, res: Response) => {
+export const getReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const reply = await reports.getReport(id);
+    const reportId: number = Number(id);
+    const reply = await reports.getReport(reportId);
     res.status(200).send(reply);
   } catch (err) {
     console.log('Return single report error', err);
     res.status(500).send('Return single report error');
   }
-}
+};
 
-export const newReport = async (req: Request, res: Response) => {
+export const newReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { title, description, tags, steps, images } = req.body;
     const reply = await reports.newReport(title, description, tags, steps, images);
@@ -32,9 +34,9 @@ export const newReport = async (req: Request, res: Response) => {
     console.log('Create new report error', err);
     res.status(500).send('Create new report error');
   }
-}
+};
 
-export const editReport = async (req: Request, res: Response) => {
+export const editReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { _id, title, description, tags, steps } = req.body;
     const reply = await reports.editReport(_id, title, description, tags, steps);
@@ -43,9 +45,9 @@ export const editReport = async (req: Request, res: Response) => {
     console.log('Edit report error', err);
     res.status(500).send('Edit report error');
   }
-}
+};
 
-export const deleteReport = async (req: Request, res: Response) => {
+export const deleteReport = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const reply = await reports.deleteReport(id);
@@ -54,4 +56,4 @@ export const deleteReport = async (req: Request, res: Response) => {
     console.log('Delete report error', err);
     res.status(500).send('Delete report error');
   }
-}
+};
