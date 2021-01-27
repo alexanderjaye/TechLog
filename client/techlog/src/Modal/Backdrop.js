@@ -9,11 +9,13 @@ const Backdrop = ({admin, report, holdReportId, toggleModal, callReports}) => {
 
   return createPortal (
     <div className="backdrop__container">
-      <Modal admin={admin} 
-             report={report}
-             holdReportId={holdReportId}
-             toggleModal={toggleModal} 
-             callReports={callReports}/>
+      <Modal 
+        admin={admin} 
+        report={report}
+        holdReportId={holdReportId}
+        toggleModal={toggleModal} 
+        callReports={callReports}
+      />
     </div>, document.getElementById('backdrop-hook')
   );
 }

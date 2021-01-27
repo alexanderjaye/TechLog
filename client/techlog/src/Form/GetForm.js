@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './GetForm.css';
 
 const GetForm = ({ editReport, formFetch }) => {
+  const [localReportId, setLocalReportId] = useState('')
 
   const getReport = () => {
-    const reportId = document.getElementById('report__id');
-    formFetch(reportId.value);
-    reportId.value = '';
+    formFetch(localReportId);
+    setLocalReportId('');
   }
 
   const pasteId = () => {
-    const reportId = document.getElementById('report__id');
-    reportId.value = editReport;
+    setLocalReportId(editReport);
+    
+  }
+
+  const handleReportId = (e) => {
+    setLocalReportId(e.target.value);
   }
 
   return (
     <div className="getform__container">
       <div className="getform__input">
         <h3>REPORT ID:</h3>
-        <input id="report__id" name="report__id" type="text"></input>
+        <input 
+          id="report__id" 
+          name="report__id" 
+          type="text"
+          value={localReportId}
+          onChange={handleReportId}
+        />
         <button onClick={getReport}>FIND REPORT</button>
         {(editReport !== 0) ? 
           <button onClick={pasteId}>PASTE ID</button> :

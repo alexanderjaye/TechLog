@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 
 import './Modal.css';
 
@@ -8,6 +8,13 @@ import Image from './Image';
 
 const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
   const { _id, tags, title, images, description, steps, reportId } = report;
+
+  const closeButtonRef = useRef();
+  const reportIdRef = useRef();
+
+  useEffect(() => {
+    closeButtonRef.current.focus()
+  }, []);
 
   const deleteReport = () => {
     rest.deleteReport(_id);
@@ -19,9 +26,9 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
     toggleModal();
   }
 
-  const copyToClipboard = () => {
-    const idInput = document.querySelector('.modal__report-id').textContent;
-    holdReportId(idInput);
+  const copyToClipboard = async () => {
+    holdReportId(reportIdRef.current.textContent);
+    await navigator.clipboard.writeText(reportIdRef.current.textContent);
   }
 
   return (
@@ -32,7 +39,7 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
 
         <div className="modal__id">
           <label>Report ID: </label>
-          <p className="modal__report-id">{reportId}</p>
+          <p className="modal__report-id" ref={reportIdRef} >{reportId}</p>
           {admin && <button onClick={copyToClipboard}>COPY ID</button>}
         </div>
 
@@ -62,7 +69,7 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
           </div> : null}
 
         <div className="modal__buttons">
-          <button id="close" onClick={closeModal}>CLOSE</button>
+          <button ref={closeButtonRef} id="close" onClick={closeModal}>CLOSE</button>
           {admin &&
             <button id="delete" onClick={deleteReport}>DELETE</button>
           }

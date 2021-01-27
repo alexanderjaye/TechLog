@@ -42,7 +42,7 @@ const SearchItem = ( {admin, report, searchTags, holdReportId, callReports} ) =>
       holdReportId={holdReportId}
       toggleModal={toggleModal}  
       callReports={callReports}
-      />
+    />
   }
 
   return (

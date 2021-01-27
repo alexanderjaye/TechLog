@@ -15,16 +15,25 @@ const getReports = async () => {
   return dbCall;
 }
 
+// const getReport = (id) => {
+
+//   console.log('GET rest.getReport.Id', id);
+//   let dbCall;
+
+//   fetch(BASE_URL + `reports/${id}`)
+//     .then(response => response.json())
+//     .then(data => {dbCall = data})
+//     .catch(err => console.log('Fetch error', err));
+    
+//   console.log('RECEIVE REPORT', dbCall);
+//   return dbCall;
+// }
+
 const getReport = async (id) => {
 
-  let dbCall;
-
-  await fetch(BASE_URL + `reports/${id}`)
-    .then(response => response.json())
-    .then(data => {dbCall = data})
-    .catch(err => console.log('Fetch error', err));
-
-    return dbCall;
+  const getURL =  `${BASE_URL}reports/${id}`;
+  const response = await fetch(getURL);
+  return await response.json();
 }
 
 const postReport = async (title, searchTags, description, steps, filterPics) => {

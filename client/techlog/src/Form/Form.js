@@ -36,13 +36,6 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     return !formContent.title || !formContent.description || !formContent.steps
   };
 
-  
-  // window.on("keydown", function(e){
-  // if(e.keyCode === 13) {
-  //     e.preventDefault();
-  // }
-  
-
   const handleFormEdit = (event, formElement) => {
     if (event.target.value.length < 1) return;
     setFormContent({
@@ -59,9 +52,9 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
 
     //Check what route currently on - if new, formSubmit, and if edit, formPatch
     const { title, searchTags, tags, description, steps, pics } = formContent;
-    let collectedTags = [];
-    if (searchTags) collectedTags.concat(searchTags);
-    if (tags) collectedTags.concat(tags);
+    let collectedTags = []
+    if (searchTags) collectedTags = [...searchTags];
+    if (tags) collectedTags = [...collectedTags, ...tags];
     if (location.pathname === '/new') await formSubmit(title, collectedTags, description, steps, pics);
     else if (location.pathname === '/edit') await formPatch(title, collectedTags, description, steps);
     
@@ -83,6 +76,22 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
       });
     }
     stepInputRef.current.value = '';
+  }
+
+  function handleCheckboxTag(event) {
+    if (event.target.checked) {
+      setFormContent({
+        ...formContent,
+        tags: [...formContent.tags, event.target.value]
+      });
+    } else {
+      const filteredTags = formContent.tags.filter(tag => tag !== event.target.value)
+      setFormContent({
+        ...formContent,
+        tags: filteredTags
+      });
+    }
+    console.log('tags', formContent.tags);
   }
 
   const customTagHandler = (event) => {
@@ -159,6 +168,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
         tagInputRef={tagInputRef}
         handleSearchTagClick={handleSearchTagClick}
         handlePresetTagClick={handlePresetTagClick}
+        handleCheckboxTag={handleCheckboxTag}
       />
 
       <div className="report__description">
