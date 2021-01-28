@@ -30,7 +30,7 @@ const GetForm = ({ editReport, formFetch }) => {
           value={localReportId}
           onChange={handleReportId}
         />
-        <button onClick={getReport}>FIND REPORT</button>
+        <button id='get-report' onClick={getReport}>FIND REPORT</button>
         {(editReport !== 0) ? 
           <button onClick={pasteId}>PASTE ID</button> :
           null

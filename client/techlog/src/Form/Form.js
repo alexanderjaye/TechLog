@@ -156,7 +156,7 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             id="report__title__input" 
             name="title" 
             type="text" 
-            defaultValue={formContent ? formContent.title : ''}
+            value={formContent ? formContent.title : ''}
             onChange={(e) => handleFormEdit(e, 'title')}
           >
           </input>
