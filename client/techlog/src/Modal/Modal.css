@@ -44,6 +44,11 @@ html[data-theme="dark"] {
   margin-left: 2em;
 }
 
+.modal__copy-notification {
+  margin-left: 2em;
+  color: grey;
+} 
+
 .modal__tags {
   display: flex;
   align-items: baseline;
