@@ -45,8 +45,10 @@ html[data-theme="dark"] {
 }
 
 .modal__copy-notification {
-  margin-left: 2em;
+  margin-left: 1.5em;
   color: grey;
+  padding: 0.5em;
+  background-color: rgb(255, 225, 225);
 } 
 
 .modal__tags {
