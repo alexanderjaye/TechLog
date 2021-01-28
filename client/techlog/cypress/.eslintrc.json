@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "cypress"
+  ],
+  "extends": [
+  ],
+  "env": {
+    "cypress/globals": true,
+    "jest": false,
+    "jest/globals": false
+  }
+}
