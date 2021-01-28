@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useEffect } from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 
 import './Modal.css';
 
@@ -11,6 +11,8 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
 
   const closeButtonRef = useRef();
   const reportIdRef = useRef();
+
+  const [idCopied, setIdCopied] = useState(false);
 
   useEffect(() => {
     closeButtonRef.current.focus()
@@ -29,6 +31,7 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
   const copyToClipboard = async () => {
     holdReportId(reportIdRef.current.textContent);
     await navigator.clipboard.writeText(reportIdRef.current.textContent);
+    setIdCopied(true);
   }
 
   return (
@@ -41,6 +44,7 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
           <label>Report ID: </label>
           <p className="modal__report-id" ref={reportIdRef} >{reportId}</p>
           {admin && <button onClick={copyToClipboard}>COPY ID</button>}
+          <div>{ idCopied ? <IDNotification/> : null }</div>
         </div>
 
         <div className="modal__tags">
@@ -78,5 +82,13 @@ const Modal = ({ admin, report, holdReportId, toggleModal, callReports }) => {
     </Fragment>
   )
 }
+
+const IDNotification = () => {
+  return ( 
+    <p className="modal__copy-notification">ID copied to clipboard</p>
+   );
+}
+ 
+// export default IDNotification;
 
 export default Modal;
