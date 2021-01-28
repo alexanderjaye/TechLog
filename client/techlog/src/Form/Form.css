@@ -118,3 +118,29 @@ label {
   background-color: var(--color-primary);
   border: 1px solid var(--color-secondary);
 }
+
+.report__cancel__btn {
+  cursor: pointer;
+  width: 30%;
+  padding: 8px;
+  color: var(--color-primary);
+  font-weight: 600;
+  outline: none;
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 5px;
+}
+
+.report__cancel__btn:hover {
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+}
+
+.report__btns__container {
+  width: 60%;
+  justify-content: space-around;
+  display: flex;
+}

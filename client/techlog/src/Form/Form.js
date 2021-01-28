@@ -62,6 +62,13 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
     history.push('/search');
   }
 
+  //Form cancel handler
+  const formCancelHandler = (event) => {
+    event.preventDefault();
+    //Reset tags state and redirect
+    history.push('/search');
+  }
+
   function addStepHandler(event) {
     event.preventDefault();
     if (formContent.steps){
@@ -204,7 +211,10 @@ const Form = ( { formSubmit, formPatch, form, history } ) => {
             <input type="file" className="pics"></input>
       </div>}
 
-      <input name="formSubmit" className="report__submit__btn" type="submit" value="SUBMIT" onClick={formHandler} disabled={formValidator()}/>
+      <div className="report__btns__container">
+        <input name="formSubmit" className="report__submit__btn" type="submit" value="SUBMIT" onClick={formHandler} disabled={formValidator()}/>
+        <input name="formSubmit" className="report__cancel__btn" type="submit" value="CANCEL" onClick={formCancelHandler}/>
+      </div>
 
     </form>
   )
