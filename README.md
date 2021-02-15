@@ -35,6 +35,14 @@ TechLog also comes with a night-mode suitable for late-night work.
 
 ![techlog-example-2](readme-assets/techlog-example-2.png)
 
+
+
+## Tech Stack
+
+![techlog-tech-stack](readme-assets/techlog-tech-stack.png)
+
+
+
 ## Contributing
 
 TechLog has a full suite of tests and uses Github actions to check pull requests, please make sure to run the tests as laid out in [Getting Started](##Get Started)
