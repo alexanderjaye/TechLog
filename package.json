@@ -1,33 +1,23 @@
 {
-  "name": "techlog",
-  "version": "1.0.0",
-  "description": "Shared technicians log",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DanB-Web/TechLog.git"
-  },
-  "author": "Dan Bayford",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DanB-Web/TechLog/issues"
-  },
-  "homepage": "https://github.com/DanB-Web/TechLog#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "gsap": "^3.6.0",
-    "mongoose": "^5.11.11",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "eslint": "^7.18.0",
-    "eslint-plugin-react": "^7.22.0"
-  }
+	"name": "techlog",
+	"version": "1.0.0",
+	"description": "Shared technicians log",
+	"main": "index.js",
+	"scripts": {
+		"test": "cd server && npm t && cd ../client/techlog && npm t"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DanB-Web/TechLog.git"
+	},
+	"author": "Dan Bayford",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DanB-Web/TechLog/issues"
+	},
+	"homepage": "https://github.com/DanB-Web/TechLog#readme",
+	"devDependencies": {
+		"eslint": "^7.18.0",
+		"eslint-plugin-react": "^7.22.0"
+	}
 }
