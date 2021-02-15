@@ -1,14 +1,14 @@
 import { reportModel as Reports, reportType } from './reports.schema';
-import { DocumentQuery } from 'mongoose';
+import { Query } from 'mongoose';
 
-export const allReports = (): DocumentQuery<reportType[], reportType, {}> => {
+export const allReports = (): Query<reportType[], reportType> => {
 	const reply = Reports.find({});
 	return reply;
 };
 
 export const getReport = (
 	reportId: number
-): DocumentQuery<reportType | null, reportType, {}> => {
+): Query<reportType | null, reportType> => {
 	const reply = Reports.findOne({ reportId });
 	return reply;
 };
@@ -54,7 +54,7 @@ export const editReport = (
 	description: string,
 	tags: string[],
 	steps: string[]
-): DocumentQuery<reportType | null, reportType, {}> => {
+): Query<reportType | null, reportType> => {
 	const reply = Reports.findByIdAndUpdate(_id, {
 		title,
 		description,
@@ -66,7 +66,7 @@ export const editReport = (
 
 export const deleteReport = (
 	id: string
-): DocumentQuery<reportType | null, reportType, {}> => {
+): Query<reportType | null, reportType> => {
 	const reply = Reports.findByIdAndDelete({ _id: id });
 	return reply;
 };
